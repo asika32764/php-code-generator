@@ -3,7 +3,6 @@
     "description": "PHP Code generator",
     "require": {
         "asika/joomla-console": "dev-master",
-        "joomla/di": "~1.0",
 	    "joomla/database" : "~1.0"
     },
     "license": "LGPL",
