@@ -10,7 +10,6 @@ namespace CodeGenerator\Controller;
 
 use CodeGenerator\Action\Action;
 use CodeGenerator\IO\IOInterface;
-use CodeGenerator\Provider\ServiceProvider;
 use Joomla\Registry\Registry;
 use Joomla\DI\Container;
 
@@ -50,9 +49,6 @@ abstract class TaskController extends Controller
 		$config->set('basic_dir.dest', JPATH_BASE);
 
 		$config->set('basic_dir.src', dirname(__DIR__) . '/Template');
-
-		// Set provider
-		$container->registerServiceProvider(new ServiceProvider);
 
 		parent::__construct($io);
 	}
