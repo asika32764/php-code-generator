@@ -5,7 +5,7 @@
         "asika/joomla-console": "dev-master",
 	    "joomla/database" : "~1.0"
     },
-    "license": "LGPL",
+    "license": "GNU Lesser General Public License",
     "authors": [
         {
             "name": "Simon Asika",
