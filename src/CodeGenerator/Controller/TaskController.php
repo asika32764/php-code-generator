@@ -62,7 +62,7 @@ abstract class TaskController extends Controller
 	 */
 	public function doAction(Action $action)
 	{
-		$action->execute($this, $this->replace);
+		$action->execute($this);
 
 		return $this;
 	}

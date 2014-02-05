@@ -26,6 +26,27 @@ abstract class Action
 	protected $container;
 
 	/**
+	 * Property controller.
+	 *
+	 * @var TaskController
+	 */
+	protected $controller;
+
+	/**
+	 * Property replace.
+	 *
+	 * @var array
+	 */
+	protected $replace;
+
+	/**
+	 * Property config.
+	 *
+	 * @var \Joomla\Registry\Registry
+	 */
+	protected $config;
+
+	/**
 	 * Contructor.
 	 *
 	 * @param Container $container
@@ -39,9 +60,24 @@ abstract class Action
 	 * execute
 	 *
 	 * @param TaskController $controller
-	 * @param array          $replace
 	 *
-	 * @return  void
+	 * @return  mixed
 	 */
-	abstract public function execute(TaskController $controller, $replace = array());
+	public function execute(TaskController $controller)
+	{
+		$this->controller = $controller;
+
+		$this->replace = $controller->replace;
+
+		$this->config = $controller->config;
+
+		return $this->doExecute();
+	}
+
+	/**
+	 * doExecute
+	 *
+	 * @return  mixed
+	 */
+	abstract protected function doExecute();
 }

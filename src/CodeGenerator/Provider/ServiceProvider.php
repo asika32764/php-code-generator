@@ -31,7 +31,8 @@ class ServiceProvider implements ServiceProviderInterface
 	{
 		$operators = array(
 			'copy',
-			'convert'
+			'convert',
+			'replace'
 		);
 
 		foreach ($operators as $operator)
