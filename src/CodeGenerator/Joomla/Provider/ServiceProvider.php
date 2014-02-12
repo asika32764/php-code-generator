@@ -35,7 +35,7 @@ class ServiceProvider implements ServiceProviderInterface
 	 */
 	public function __construct($config = array())
 	{
-		$this->config = $config;
+		$this->config = new Registry($config);
 	}
 
 	/**
@@ -69,6 +69,9 @@ class ServiceProvider implements ServiceProviderInterface
 				->buildSharedObject($class);
 		}
 
+		// Config
+		$container->share('config', $this->config);
+
 		// App
 		$config = $this->config;
 
@@ -77,7 +80,7 @@ class ServiceProvider implements ServiceProviderInterface
 				'CodeGenerator\\Joomla\\Application',
 				function($container) use ($config)
 				{
-					return new Application($container, new Registry($config));
+					return new Application($container);
 				}
 			);
 	}

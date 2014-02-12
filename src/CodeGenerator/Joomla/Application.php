@@ -39,16 +39,22 @@ class Application extends Console implements ApplicationInterface
 	 * Constructor.
 	 *
 	 * @param Container $container
-	 * @param array     $config
 	 */
-	public function __construct(Container $container, $config = array())
+	public function __construct(Container $container)
 	{
 		$this->io = $container->get('io');
 		$input    = $this->io->getInput();
 		$output   = $this->io->getOutput();
-		$config   = ($config instanceof Registry) ? $config : new Registry($config);
+		$config   = $container->get('config');
 
 		$this->container = $container;
+
+		// Set basic dir.
+		$config['basic_dir.base'] = realpath(dirname(__DIR__) . '/../../..');
+
+		$config['basic_dir.dest'] = $this->io->getOption('p', $config['basic_dir.base'] . '/dest');
+
+		$config['basic_dir.src'] = $config['basic_dir.base'] . '/template';
 
 		parent::__construct($input, $config, $output);
 	}
