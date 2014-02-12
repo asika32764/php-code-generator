@@ -8,6 +8,9 @@
 
 namespace CodeGenerator\IO;
 
+use Joomla\Console\Output\Stdout;
+use Joomla\Input\Input;
+
 /**
  * IO Adapter.
  *
@@ -15,6 +18,39 @@ namespace CodeGenerator\IO;
  */
 class IO implements IOInterface
 {
+	/**
+	 * Property input.
+	 *
+	 * @var  Input
+	 */
+	protected $input = null;
+
+	/**
+	 * Property output.
+	 *
+	 * @var  Stdout
+	 */
+	protected $output = null;
+
+	/**
+	 * Property inputStream.
+	 *
+	 * @var  resource
+	 */
+	protected $inputStream = STDIN;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param Input  $input
+	 * @param Stdout $output
+	 */
+	public function __construct(Input $input, Stdout $output)
+	{
+		$this->input  = $input  ? : new Input;
+		$this->output = $output ? : new Stdout;
+	}
+
 	/**
 	 * out
 	 *
@@ -24,7 +60,9 @@ class IO implements IOInterface
 	 */
 	public function out($msg = '')
 	{
-		// TODO: Implement out() method.
+		$this->output->out($msg);
+
+		return $this;
 	}
 
 	/**
@@ -36,7 +74,12 @@ class IO implements IOInterface
 	 */
 	public function in($question = '')
 	{
-		// TODO: Implement in() method.
+		if ($question)
+		{
+			$this->out($question, false);
+		}
+
+		return rtrim(fread($this->inputStream, 8192), "\n\r");
 	}
 
 	/**
@@ -48,7 +91,9 @@ class IO implements IOInterface
 	 */
 	public function err($msg = '')
 	{
-		// TODO: Implement err() method.
+		$this->output->err($msg);
+
+		return $this;
 	}
 
 	/**
@@ -60,6 +105,118 @@ class IO implements IOInterface
 	 */
 	public function close($msg = '')
 	{
-		// TODO: Implement close() method.
+		$this->output->out($msg);
+
+		exit();
+	}
+
+	/**
+	 * getArgument
+	 *
+	 * @param string $offset
+	 * @param string $default
+	 *
+	 * @return  mixed
+	 */
+	public function getArgument($offset, $default = null)
+	{
+		$args = $this->input->args;
+
+		if (isset($args[$offset]))
+		{
+			return $args[$offset];
+		}
+
+		if (is_callable($default))
+		{
+			return $default();
+		}
+
+		return $default;
+	}
+
+	/**
+	 * getOption
+	 *
+	 * @param string $name
+	 * @param string $default
+	 *
+	 * @return  mixed
+	 */
+	public function getOption($name, $default = null)
+	{
+		return $this->input->get($name, $default);
+	}
+
+	/**
+	 * getInput
+	 *
+	 * @return  \Joomla\Input\Input
+	 */
+	public function getInput()
+	{
+		return $this->input;
+	}
+
+	/**
+	 * setInput
+	 *
+	 * @param   \Joomla\Input\Input $input
+	 *
+	 * @return  IO  Return self to support chaining.
+	 */
+	public function setInput($input)
+	{
+		$this->input = $input;
+
+		return $this;
+}
+
+	/**
+	 * getOutput
+	 *
+	 * @return  \Joomla\Console\Output\Stdout
+	 */
+	public function getOutput()
+	{
+		return $this->output;
+	}
+
+	/**
+	 * setOutput
+	 *
+	 * @param   \Joomla\Console\Output\Stdout $output
+	 *
+	 * @return  IO  Return self to support chaining.
+	 */
+	public function setOutput($output)
+	{
+		$this->output = $output;
+
+		return $this;
+	}
+
+	/**
+	 * getInputStream
+	 *
+	 * @return  resource
+	 */
+	public function getInputStream()
+	{
+		return $this->inputStream;
+	}
+
+	/**
+	 * setInputStream
+	 *
+	 * @param   resource $inputStream
+	 *
+	 * @return  IO  Return self to support chaining.
+	 */
+	public function setInputStream($inputStream)
+	{
+		$this->inputStream = $inputStream;
+
+		return $this;
 	}
 }

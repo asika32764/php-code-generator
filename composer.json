@@ -3,7 +3,8 @@
 	"description"      : "PHP Code generator",
 	"require"          : {
 		"asika/joomla-console": "dev-master",
-		"joomla/database"     : "~1.0"
+		"joomla/database"     : "~1.0",
+		"joomla/di"           : "~1.0"
 	},
 	"license"          : "GNU Lesser General Public License",
 	"authors"          : [
@@ -13,8 +14,8 @@
 		}
 	],
 	"autoload"         : {
-		"psr-0": {
-			"": "src/"
+		"psr-4": {
+			"CodeGenerator": "src/"
 		}
 	},
 	"minimum-stability": "beta"
