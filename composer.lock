@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6662da5c5bbf711534942706e969eb69",
+    "hash": "9ae8f7d214fe5f46fb207a100efdf139",
     "packages": [
         {
             "name": "asika/joomla-console",

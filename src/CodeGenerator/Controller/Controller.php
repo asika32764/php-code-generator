@@ -18,7 +18,7 @@ use Joomla\Input;
 abstract class Controller implements ControllerInterface
 {
 	/**
-	 * Property io.
+	 * IO adapter.
 	 *
 	 * @var
 	 */

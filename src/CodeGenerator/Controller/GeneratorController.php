@@ -11,7 +11,7 @@ namespace CodeGenerator\Controller;
 use CodeGenerator\DI\Container;
 use CodeGenerator\IO\IOInterface;
 
-use CodeGenerator\Provider\JoomlaServiceProvider;
+use CodeGenerator\Joomla\Provider\ServiceProvider;
 use Joomla\DI\ContainerAwareInterface;
 use Joomla\DI\Container as JoomlaContainer;
 
@@ -40,7 +40,7 @@ class GeneratorController extends Controller implements ContainerAwareInterface
 		$this->container = $container ? : $this->getContainer();
 
 		// Set provider
-		$container->registerServiceProvider(new JoomlaServiceProvider);
+		$container->registerServiceProvider(new ServiceProvider);
 
 		parent::__construct($io);
 	}

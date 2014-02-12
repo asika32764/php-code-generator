@@ -14,8 +14,8 @@
 		}
 	],
 	"autoload"         : {
-		"psr-4": {
-			"CodeGenerator": "src/"
+		"psr-0": {
+			"CodeGenerator\\": "src/"
 		}
 	},
 	"minimum-stability": "beta"

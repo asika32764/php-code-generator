@@ -6,10 +6,11 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace CodeGenerator\IO;
+namespace CodeGenerator\Joomla;
 
+use CodeGenerator\IO\IOInterface;
 use Joomla\Console\Output\Stdout;
-use Joomla\Input\Input;
+use Joomla\Input;
 
 /**
  * IO Adapter.
@@ -21,7 +22,7 @@ class IO implements IOInterface
 	/**
 	 * Property input.
 	 *
-	 * @var  Input
+	 * @var  Input\Cli
 	 */
 	protected $input = null;
 
@@ -42,12 +43,12 @@ class IO implements IOInterface
 	/**
 	 * Constructor.
 	 *
-	 * @param Input  $input
-	 * @param Stdout $output
+	 * @param Input\Cli  $input
+	 * @param Stdout     $output
 	 */
-	public function __construct(Input $input, Stdout $output)
+	public function __construct(Input\Cli $input = null, Stdout $output = null)
 	{
-		$this->input  = $input  ? : new Input;
+		$this->input  = $input  ? : new Input\Cli;
 		$this->output = $output ? : new Stdout;
 	}
 
