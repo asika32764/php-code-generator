@@ -2,7 +2,11 @@
 .*
 
 # Composer #
-vendor
+vendor/*
 
 # Tests #
 phpunit.xml
+
+# Code Generator #
+template/*
+dest/*

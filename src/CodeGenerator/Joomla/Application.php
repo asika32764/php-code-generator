@@ -9,10 +9,11 @@
 namespace CodeGenerator\Joomla;
 
 use CodeGenerator\Application\ApplicationInterface;
+use CodeGenerator\Joomla\Command\Generate\Generate;
+use CodeGenerator\Joomla\Command\Template\Template;
 use Joomla\Console\Console;
 use Joomla\DI\Container;
 use Joomla\Input;
-use Joomla\Registry\Registry;
 
 /**
  * Class Application
@@ -57,6 +58,19 @@ class Application extends Console implements ApplicationInterface
 		$config['basic_dir.src'] = $config['basic_dir.base'] . '/template';
 
 		parent::__construct($input, $config, $output);
+
+		$this->registerCommands();
+	}
+
+	/**
+	 * registerCommands
+	 *
+	 * @return  void
+	 */
+	protected function registerCommands()
+	{
+		$this->addCommand(new Template);
+		$this->addCommand(new Generate);
 	}
 
 	/**
