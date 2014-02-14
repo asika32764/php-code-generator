@@ -6,19 +6,18 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace GeneratorBundle\Command\Generator\Convert;
+namespace CodeGenerator\Joomla\Command\Template\Convert;
 
-use GeneratorBundle\Controller\GeneratorController;
-use Windwalker\Console\Command\Command;
-
-defined('WINDWALKER') or die;
+use CodeGenerator\Controller\GeneratorController;
+use CodeGenerator\Joomla\IO;
+use Joomla\Console\Command\Command;
 
 /**
  * Class Convert
  *
  * @since  2.0
  */
-class ConvertCommand extends Command
+class Convert extends Command
 {
 	/**
 	 * An enabled flag.
@@ -67,8 +66,10 @@ class ConvertCommand extends Command
 	 */
 	protected function doExecute()
 	{
-		$generator = new GeneratorController($this);
+		$io = new IO($this);
 
-		$generator->setTask('template.convert')->execute();
+		$controller = new GeneratorController($io);
+
+		$controller->setTask('convert')->execute();
 	}
 }

@@ -18,7 +18,7 @@ use Joomla\Registry\Registry;
  *
  * @since 1.0
  */
-class Generate extends AcmeController
+class Convert extends AcmeController
 {
 	/**
 	 * Constructor.
@@ -44,6 +44,16 @@ class Generate extends AcmeController
 	 */
 	public function execute()
 	{
-		$this->doAction(new Action\CopyAllAction);
+		// Flip src & dest
+		$dest = $this->config['path.src'];
+		$src  = $this->config['path.dest'];
+
+		$this->config['path.src']  = $src;
+		$this->config['path.dest'] = $dest;
+
+		// Flip replace array
+		$this->replace = array_flip($this->replace);
+
+		$this->doAction(new Action\ConvertAction);
 	}
 }

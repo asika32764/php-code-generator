@@ -1,0 +1,57 @@
+{% extends '_index.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <p align="center">
+                <img class="img-thumbnail" src="http://placehold.it/1140x300" alt="img" />
+            </p>
+
+            <div class="row">
+                <div class="col-lg-9">
+                    {% set {@ item.lower @}s = helper.blog.get{@ item.cap @}s() %}
+
+                    {% for item in {@ item.lower @}s %}
+                    <{@ item.lower @}>
+                        <header>
+                            <h2>
+                                <a href="{@ item.lower @}">
+                                    {{ item.title }}
+                                </a>
+                            </h2>
+                        </header>
+
+                        {{ item.introtext|raw }}
+
+                        <aside>
+                            <a class="btn btn-primary" href="{@ item.lower @}">
+                                Readon
+                            </a>
+                        </aside>
+                    </{@ item.lower @}>
+                    {% endfor %}
+
+                </div>
+
+                <div class="col-lg-3">
+                    <section class="sidebar">
+                        <h3>Menu</h3>
+
+                        <ul class="nav nav-pills nav-stacked">
+                            <li class="active"><a href="#">Home</a></li>
+                            {% for item in {@ item.lower @}s %}
+                            <li>
+                                <a href="{@ item.lower @}">
+                                    {{ item.title }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+{% endblock %}

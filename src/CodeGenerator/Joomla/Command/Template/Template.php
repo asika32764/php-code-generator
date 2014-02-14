@@ -8,6 +8,7 @@
 
 namespace CodeGenerator\Joomla\Command\Template;
 
+use CodeGenerator\Joomla\Command\Template\Convert\Convert;
 use Joomla\Console\Command\Command;
 
 /**
@@ -57,7 +58,7 @@ HELP;
 
 	protected function configure()
 	{
-		// $this->
+		$this->addCommand(new Convert);
+			//->addCommand(new Init)
 	}
 }
- 

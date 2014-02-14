@@ -28,5 +28,41 @@ abstract class AcmeController extends TaskController
 	public function __construct(IOInterface $io, Registry $config = null)
 	{
 		parent::__construct($io, $config);
+
+		$this->registerReplaces($io);
+
+		$this->registerPaths($io);
+	}
+
+	/**
+	 * registerReplaces
+	 *
+	 * @param IOInterface $io
+	 *
+	 * @return  void
+	 */
+	protected function registerReplaces($io)
+	{
+		$this->replace['{@ item.lower @}'] = 'article';
+		$this->replace['{@ item.upper @}'] = 'ARTICLE';
+		$this->replace['{@ item.cap @}']   = 'Article';
+	}
+
+	/**
+	 * registerPaths
+	 *
+	 * @param IOInterface $io
+	 *
+	 * @return  array
+	 */
+	protected function registerPaths($io)
+	{
+		$subTemplate = $io->getOption('t', 'default');
+		$dest        = $io->getArgument(1) ? : 'dest';
+
+		$this->config['path.src']  = __DIR__ . '/Template/' . $subTemplate;
+		$this->config['path.dest'] = GENERATOR_PATH . '/' . $dest;
+
+		// $config['tag.variable'] = array('[[', ']]');
 	}
 }
