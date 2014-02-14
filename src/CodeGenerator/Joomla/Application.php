@@ -9,18 +9,22 @@
 namespace CodeGenerator\Joomla;
 
 use CodeGenerator\Application\ApplicationInterface;
+use CodeGenerator\IO\IOInterface;
 use CodeGenerator\Joomla\Command\Generate\Generate;
 use CodeGenerator\Joomla\Command\Template\Template;
+use Joomla\Application\Cli\CliOutput;
 use Joomla\Console\Console;
+use Joomla\Console\Option\Option;
 use Joomla\DI\Container;
 use Joomla\Input;
+use Joomla\Registry\Registry;
 
 /**
  * Class Application
  *
  * @since 1.0
  */
-class Application extends Console implements ApplicationInterface
+class Application extends Console
 {
 	/**
 	 * Property io.
@@ -39,27 +43,29 @@ class Application extends Console implements ApplicationInterface
 	/**
 	 * Constructor.
 	 *
-	 * @param Container $container
+	 * @param Input\Cli $input
+	 * @param Registry  $config
+	 * @param CliOutput $output
 	 */
-	public function __construct(Container $container)
+	public function __construct(Input\Cli $input = null, Registry $config = null, CliOutput $output = null)
 	{
-		$this->io = $container->get('io');
-		$input    = $this->io->getInput();
-		$output   = $this->io->getOutput();
-		$config   = $container->get('config');
-
-		$this->container = $container;
-
-		// Set basic dir.
-		$config['basic_dir.base'] = realpath(dirname(__DIR__) . '/../../..');
-
-		$config['basic_dir.dest'] = $this->io->getOption('p', $config['basic_dir.base'] . '/dest');
-
-		$config['basic_dir.src'] = $config['basic_dir.base'] . '/template';
-
 		parent::__construct($input, $config, $output);
 
 		$this->registerCommands();
+
+		$this->rootCommand->addOption(
+			array('p', 'path'),
+			'',
+			'Dest path.',
+			Option::IS_GLOBAL
+		);
+
+		// Set basic dir.
+		$config['basic_dir.base'] = $config['basic_dir.base'] ? : realpath(dirname(__DIR__) . '/../../..');
+
+		$config['basic_dir.dest'] = $this->rootCommand->getOption('p', $config['basic_dir.base'] . '/dest');
+
+		// $config['basic_dir.src']  = $config['basic_dir.base'] . '/template';
 	}
 
 	/**
@@ -72,31 +78,4 @@ class Application extends Console implements ApplicationInterface
 		$this->addCommand(new Template);
 		$this->addCommand(new Generate);
 	}
-
-	/**
-	 * getIo
-	 *
-	 * @return  \CodeGenerator\Joomla\IO
-	 */
-	public function getIO()
-	{
-		return $this->io;
-	}
-
-	/**
-	 * setIo
-	 *
-	 * @param   \CodeGenerator\Joomla\IO $io
-	 *
-	 * @return  Application  Return self to support chaining.
-	 */
-	public function setIO($io)
-	{
-		$this->io     = $io;
-		$this->input  = $this->io->getInput();
-		$this->output = $this->io->getOutput();
-
-		return $this;
-	}
 }
- 

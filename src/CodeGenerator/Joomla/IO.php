@@ -9,6 +9,7 @@
 namespace CodeGenerator\Joomla;
 
 use CodeGenerator\IO\IOInterface;
+use Joomla\Console\Command\Command;
 use Joomla\Console\Output\Stdout;
 use Joomla\Input;
 
@@ -34,6 +35,13 @@ class IO implements IOInterface
 	protected $output = null;
 
 	/**
+	 * Property command.
+	 *
+	 * @var  Command
+	 */
+	protected $command = null;
+
+	/**
 	 * Property inputStream.
 	 *
 	 * @var  resource
@@ -43,13 +51,13 @@ class IO implements IOInterface
 	/**
 	 * Constructor.
 	 *
-	 * @param Input\Cli  $input
-	 * @param Stdout     $output
+	 * @param Command $command
 	 */
-	public function __construct(Input\Cli $input = null, Stdout $output = null)
+	public function __construct($command)
 	{
-		$this->input  = $input  ? : new Input\Cli;
-		$this->output = $output ? : new Stdout;
+		$this->input   = $command->getInput();
+		$this->output  = $command->getOutput();
+		$this->command = $command;
 	}
 
 	/**
@@ -61,7 +69,7 @@ class IO implements IOInterface
 	 */
 	public function out($msg = '')
 	{
-		$this->output->out($msg);
+		$this->command->out($msg);
 
 		return $this;
 	}
@@ -75,12 +83,7 @@ class IO implements IOInterface
 	 */
 	public function in($question = '')
 	{
-		if ($question)
-		{
-			$this->out($question, false);
-		}
-
-		return rtrim(fread($this->inputStream, 8192), "\n\r");
+		return $this->command->in($question);
 	}
 
 	/**
@@ -92,7 +95,7 @@ class IO implements IOInterface
 	 */
 	public function err($msg = '')
 	{
-		$this->output->err($msg);
+		$this->command->err($msg);
 
 		return $this;
 	}
@@ -106,7 +109,7 @@ class IO implements IOInterface
 	 */
 	public function close($msg = '')
 	{
-		$this->output->out($msg);
+		$this->command->out($msg, true);
 
 		exit();
 	}
@@ -121,19 +124,7 @@ class IO implements IOInterface
 	 */
 	public function getArgument($offset, $default = null)
 	{
-		$args = $this->input->args;
-
-		if (isset($args[$offset]))
-		{
-			return $args[$offset];
-		}
-
-		if (is_callable($default))
-		{
-			return $default();
-		}
-
-		return $default;
+		return $this->getArgument($offset, $default);
 	}
 
 	/**
@@ -146,7 +137,7 @@ class IO implements IOInterface
 	 */
 	public function getOption($name, $default = null)
 	{
-		return $this->input->get($name, $default);
+		return $this->command->getOption($name, $default);
 	}
 
 	/**
@@ -217,6 +208,30 @@ class IO implements IOInterface
 	public function setInputStream($inputStream)
 	{
 		$this->inputStream = $inputStream;
+
+		return $this;
+	}
+
+	/**
+	 * getCommand
+	 *
+	 * @return  \Joomla\Console\Command\Command
+	 */
+	public function getCommand()
+	{
+		return $this->command;
+	}
+
+	/**
+	 * setCommand
+	 *
+	 * @param   \Joomla\Console\Command\Command $command
+	 *
+	 * @return  IO  Return self to support chaining.
+	 */
+	public function setCommand($command)
+	{
+		$this->command = $command;
 
 		return $this;
 	}

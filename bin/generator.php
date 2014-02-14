@@ -8,10 +8,9 @@
 
 include dirname(__DIR__) . '/vendor/autoload.php';
 
-$container = \CodeGenerator\Joomla\DI\Container::getInstance();
+use CodeGenerator\Joomla\Application;
+use Joomla\Console\Output\Stdout;
 
-$container->registerServiceProvider(new \CodeGenerator\Joomla\Provider\ServiceProvider);
-
-$app = $container->get('app');
+$app = new Application(null, null, new Stdout);
 
 $app->execute();

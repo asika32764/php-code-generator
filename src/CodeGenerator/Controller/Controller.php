@@ -39,15 +39,12 @@ abstract class Controller implements ControllerInterface
 	 * Write a string to standard output.
 	 *
 	 * @param   string   $text  The text to display.
-	 * @param   boolean  $nl    True (default) to append a new line at the end of the output string.
 	 *
 	 * @return  Controller  Instance of $this to allow chaining.
-	 *
-	 * @since   1.0
 	 */
-	public function out($text = '', $nl = true)
+	public function out($text = '')
 	{
-		$this->io->out($text, $nl);
+		$this->io->out($text);
 
 		return $this;
 	}
@@ -56,15 +53,12 @@ abstract class Controller implements ControllerInterface
 	 * Write a string to standard error output.
 	 *
 	 * @param   string   $text  The text to display.
-	 * @param   boolean  $nl    True (default) to append a new line at the end of the output string.
 	 *
 	 * @return  Controller  Instance of $this to allow chaining.
-	 *
-	 * @since   1.0
 	 */
-	public function err($text = '', $nl = true)
+	public function err($text = '')
 	{
-		$this->io->err($text, $nl);
+		$this->io->err($text);
 
 		return $this;
 	}
@@ -75,8 +69,6 @@ abstract class Controller implements ControllerInterface
 	 * @param   string  $question  The question you want to ask user.
 	 *
 	 * @return  string  The input string from standard input.
-	 *
-	 * @since   1.0
 	 */
 	public function in($question = '')
 	{
@@ -87,12 +79,11 @@ abstract class Controller implements ControllerInterface
 	 * close
 	 *
 	 * @param string $text
-	 * @param bool   $nl
 	 *
 	 * @return  void
 	 */
-	public function close($text = '', $nl = false)
+	public function close($text = '')
 	{
-		$this->io->close($text, $nl);
+		$this->io->close($text);
 	}
 }

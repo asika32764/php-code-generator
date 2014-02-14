@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9ae8f7d214fe5f46fb207a100efdf139",
+    "hash": "8075b9a61e39703678f53ccbcb22a9d6",
     "packages": [
         {
             "name": "asika/joomla-console",
@@ -53,12 +53,12 @@
             "target-dir": "Joomla/Application",
             "source": {
                 "type": "git",
-                "url": "https://github.com/joomla-framework/application.git",
+                "url": "https://github.com/joomla/joomla-framework-application.git",
                 "reference": "aae267564dcf2b926b5fec08f000eff1a7513113"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/joomla-framework/application/zipball/aae267564dcf2b926b5fec08f000eff1a7513113",
+                "url": "https://api.github.com/repos/joomla/joomla-framework-application/zipball/aae267564dcf2b926b5fec08f000eff1a7513113",
                 "reference": "aae267564dcf2b926b5fec08f000eff1a7513113",
                 "shasum": ""
             },

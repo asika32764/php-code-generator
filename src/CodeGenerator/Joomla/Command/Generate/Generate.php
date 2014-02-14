@@ -8,6 +8,8 @@
 
 namespace CodeGenerator\Joomla\Command\Generate;
 
+use CodeGenerator\Controller\GeneratorController;
+use CodeGenerator\Joomla\IO;
 use Joomla\Console\Command\Command;
 
 /**
@@ -55,9 +57,27 @@ HELP;
 	 */
 	protected $usage = '%s <cmd><command></cmd> <option>[option]</option>';
 
+	/**
+	 * configure
+	 *
+	 * @return  void
+	 */
 	protected function configure()
 	{
 		// $this->
 	}
+
+	/**
+	 * doExecute
+	 *
+	 * @return  mixed
+	 */
+	protected function doExecute()
+	{
+		$io = new IO($this);
+
+		$controller = new GeneratorController($io);
+
+		$controller->execute();
+	}
 }
- 

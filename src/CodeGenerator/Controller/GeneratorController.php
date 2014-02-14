@@ -11,16 +11,12 @@ namespace CodeGenerator\Controller;
 use CodeGenerator\DI\Container;
 use CodeGenerator\IO\IOInterface;
 
-use CodeGenerator\Joomla\Provider\ServiceProvider;
-use Joomla\DI\ContainerAwareInterface;
-use Joomla\DI\Container as JoomlaContainer;
-
 /**
  * Class GeneratorController
  *
  * @since 1.0
  */
-class GeneratorController extends Controller implements ContainerAwareInterface
+class GeneratorController extends Controller
 {
 	/**
 	 * Property container.
@@ -30,18 +26,19 @@ class GeneratorController extends Controller implements ContainerAwareInterface
 	protected $container;
 
 	/**
+	 * Property task.
+	 *
+	 * @var string
+	 */
+	protected $task;
+
+	/**
 	 * Instantiate the controller.
 	 *
-	 * @param   \Joomla\DI\Container $container  DI Container.
 	 * @param   IOInterface          $io         The Controller object.
 	 */
-	public function __construct(JoomlaContainer $container = null, IOInterface $io = null)
+	public function __construct(IOInterface $io = null)
 	{
-		$this->container = $container ? : $this->getContainer();
-
-		// Set provider
-		$container->registerServiceProvider(new ServiceProvider);
-
 		parent::__construct($io);
 	}
 
@@ -58,38 +55,31 @@ class GeneratorController extends Controller implements ContainerAwareInterface
 	 */
 	public function execute()
 	{
+		$task = $this->getTask();
+
+
 	}
 
 	/**
-	 * Get the DI container.
+	 * getTask
 	 *
-	 * @return  Container
-	 *
-	 * @since   1.0
-	 * @throws  \UnexpectedValueException May be thrown if the container has not been set.
+	 * @return  string
 	 */
-	public function getContainer()
+	public function getTask()
 	{
-		if (!$this->container)
-		{
-			$this->container = Container::getInstance();
-		}
-
-		return $this->container;
+		return $this->task;
 	}
 
 	/**
-	 * Set the DI container.
+	 * setTask
 	 *
-	 * @param   JoomlaContainer $container The DI container.
+	 * @param   string $task
 	 *
-	 * @return  $this
-	 *
-	 * @since   1.0
+	 * @return  GeneratorController  Return self to support chaining.
 	 */
-	public function setContainer(JoomlaContainer $container)
+	public function setTask($task)
 	{
-		$this->container = $container;
+		$this->task = $task;
 
 		return $this;
 	}

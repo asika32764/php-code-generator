@@ -20,7 +20,6 @@ interface ControllerInterface
 	 *                   finish execution. A controller might return false if some precondition for
 	 *                   the controller to run has not been satisfied.
 	 *
-	 * @since   1.0
 	 * @throws  \LogicException
 	 * @throws  \RuntimeException
 	 */
@@ -30,25 +29,19 @@ interface ControllerInterface
 	 * Write a string to standard output.
 	 *
 	 * @param   string   $text  The text to display.
-	 * @param   boolean  $nl    True (default) to append a new line at the end of the output string.
 	 *
 	 * @return  ControllerInterface  Instance of $this to allow chaining.
-	 *
-	 * @since   1.0
 	 */
-	public function out($text = '', $nl = true);
+	public function out($text = '');
 
 	/**
 	 * Write a string to standard error output.
 	 *
 	 * @param   string   $text  The text to display.
-	 * @param   boolean  $nl    True (default) to append a new line at the end of the output string.
 	 *
 	 * @return  ControllerInterface  Instance of $this to allow chaining.
-	 *
-	 * @since   1.0
 	 */
-	public function err($text = '', $nl = true);
+	public function err($text = '');
 
 	/**
 	 * Get a value from standard input.
@@ -56,8 +49,6 @@ interface ControllerInterface
 	 * @param   string  $question  The question you want to ask user.
 	 *
 	 * @return  string  The input string from standard input.
-	 *
-	 * @since   1.0
 	 */
 	public function in($question = '');
 
@@ -65,9 +56,8 @@ interface ControllerInterface
 	 * close
 	 *
 	 * @param string $text
-	 * @param bool   $nl
 	 *
 	 * @return  void
 	 */
-	public function close($text = '', $nl = false);
+	public function close($text = '');
 }

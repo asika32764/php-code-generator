@@ -37,18 +37,12 @@ abstract class TaskController extends Controller
 	/**
 	 * Constructor
 	 *
-	 * @param Container   $container
 	 * @param IOInterface $io
 	 * @param Registry    $config
 	 */
-	public function __construct(Container $container, IOInterface $io, Registry $config = null)
+	public function __construct(IOInterface $io, Registry $config = null)
 	{
 		$this->config = $config ? : new Registry($config);
-
-		// Set basic dir.
-		$config->set('basic_dir.dest', JPATH_BASE);
-
-		$config->set('basic_dir.src', dirname(__DIR__) . '/Template');
 
 		parent::__construct($io);
 	}
