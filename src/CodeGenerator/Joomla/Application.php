@@ -54,16 +54,22 @@ class Application extends Console
 		$this->registerCommands();
 
 		$this->rootCommand->addOption(
-			array('p', 'path'),
-			'',
-			'Dest path.',
-			Option::IS_GLOBAL
-		);
+				array('p', 'path'),
+				'',
+				'Dest path.',
+				Option::IS_GLOBAL
+			)->addOption(
+				array('t'),
+				'default',
+				'Sub template name.',
+				Option::IS_GLOBAL
+			);
 
 		// Set basic dir.
-		$config['basic_dir.base'] = $config['basic_dir.base'] ? : realpath(dirname(__DIR__) . '/../../..');
+		define('GENERATOR_PATH', $config['basic_dir.base'] ? : realpath(dirname(__DIR__) . '/../..'));
+		define('JPATH_ROOT', GENERATOR_PATH);
 
-		$config['basic_dir.dest'] = $this->rootCommand->getOption('p', $config['basic_dir.base'] . '/dest');
+		// $config['basic_dir.dest'] = $this->rootCommand->getOption('p', $config['basic_dir.base'] . '/dest');
 
 		// $config['basic_dir.src']  = $config['basic_dir.base'] . '/template';
 	}

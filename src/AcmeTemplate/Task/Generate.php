@@ -6,10 +6,10 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace AcmeTask\Controller;
+namespace AcmeTemplate\Task;
 
-use AcmeTask\Action;
-use CodeGenerator\Controller\TaskController;
+use AcmeTemplate\AcmeController;
+use AcmeTemplate\Action;
 use CodeGenerator\IO\IOInterface;
 use Joomla\Registry\Registry;
 
@@ -18,7 +18,7 @@ use Joomla\Registry\Registry;
  *
  * @since 1.0
  */
-class AcmeController extends TaskController
+class Generate extends AcmeController
 {
 	/**
 	 * Constructor.
@@ -28,9 +28,13 @@ class AcmeController extends TaskController
 	 */
 	public function __construct(IOInterface $io, Registry $config = null)
 	{
-		$template = $io->getOption('t');
+		$subTemplate = $io->getOption('t', 'default');
 
-		$config['path.src'] = __DIR__ . '/Resources';
+		$config['path.src']  = dirname(__DIR__) . '/Template/' . $subTemplate;
+
+		$dest = $io->getArgument(1) ? : 'dest';
+
+		$config['path.dest'] = GENERATOR_PATH . '/' . $dest;
 
 		parent::__construct($io, $config);
 	}

@@ -6,9 +6,10 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace AcmeTask\Action;
+namespace AcmeTemplate\Action;
 
 use CodeGenerator\Action\Action;
+use CodeGenerator\FileOperator\CopyOperator;
 
 /**
  * Class CopyAllAction
@@ -24,6 +25,8 @@ class CopyAllAction extends Action
 	 */
 	protected function doExecute()
 	{
-		echo '12321334';
+		$copyOperator = new CopyOperator($this->io);
+
+		$copyOperator->copy($this->config['path.src'], $this->config['path.dest']);
 	}
 }

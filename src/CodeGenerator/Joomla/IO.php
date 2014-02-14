@@ -124,7 +124,7 @@ class IO implements IOInterface
 	 */
 	public function getArgument($offset, $default = null)
 	{
-		return $this->getArgument($offset, $default);
+		return $this->command->getArgument($offset, $default);
 	}
 
 	/**

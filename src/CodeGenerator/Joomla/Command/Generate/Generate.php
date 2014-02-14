@@ -78,6 +78,6 @@ HELP;
 
 		$controller = new GeneratorController($io);
 
-		$controller->execute();
+		$controller->setTask('generate')->execute();
 	}
 }

@@ -9,7 +9,7 @@
 namespace CodeGenerator\Action;
 
 use CodeGenerator\Controller\TaskController;
-use CodeGenerator\DI\Container;
+use CodeGenerator\IO\IOInterface;
 
 /**
  * Class Action
@@ -18,13 +18,6 @@ use CodeGenerator\DI\Container;
  */
 abstract class Action
 {
-	/**
-	 * Property container.
-	 *
-	 * @var  \Joomla\DI\Container
-	 */
-	protected $container;
-
 	/**
 	 * Property controller.
 	 *
@@ -47,14 +40,11 @@ abstract class Action
 	protected $config;
 
 	/**
-	 * Contructor.
+	 * Property io.
 	 *
-	 * @param Container $container
+	 * @var IOInterface
 	 */
-	public function __construct(Container $container = null)
-	{
-		$this->container = $container ? : Container::getInstance();
-	}
+	protected $io;
 
 	/**
 	 * execute
@@ -70,6 +60,8 @@ abstract class Action
 		$this->replace = $controller->replace;
 
 		$this->config = $controller->config;
+
+		$this->io = $controller->io;
 
 		return $this->doExecute();
 	}

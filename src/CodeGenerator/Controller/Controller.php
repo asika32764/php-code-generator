@@ -10,7 +10,9 @@ namespace CodeGenerator\Controller;
 
 use CodeGenerator\DI\Container;
 use CodeGenerator\IO\IOInterface;
+use CodeGenerator\Joomla\IO;
 use Joomla\Input;
+use Joomla\Registry\Registry;
 
 /**
  * CodeGenerator Controller.
@@ -20,19 +22,20 @@ abstract class Controller implements ControllerInterface
 	/**
 	 * IO adapter.
 	 *
-	 * @var
+	 * @var IOInterface
 	 */
-	protected $io;
+	public $io;
 
 	/**
 	 * Instantiate the controller.
 	 *
-	 * @param   IOInterface  $io  The Controller object.
+	 * @param   IOInterface $io     The Controller object.
+	 * @param   Registry    $config Config
 	 */
-	public function __construct(IOInterface $io)
+	public function __construct(IOInterface $io, Registry $config = null)
 	{
-		// Setup dependencies.
-		$this->io = $io;
+		$this->io     = $io;
+		$this->config = $config ? : new Registry;
 	}
 
 	/**

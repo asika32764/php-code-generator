@@ -23,7 +23,7 @@ class CopyOperator extends AbstractFileOperator
 	 *
 	 * @var array
 	 */
-	protected $replace;
+	protected $replace = array();
 
 	/**
 	 * copy

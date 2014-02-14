@@ -9,7 +9,6 @@
 namespace CodeGenerator\Controller;
 
 use CodeGenerator\DI\Container;
-use CodeGenerator\IO\IOInterface;
 
 /**
  * Class GeneratorController
@@ -19,28 +18,11 @@ use CodeGenerator\IO\IOInterface;
 class GeneratorController extends Controller
 {
 	/**
-	 * Property container.
-	 *
-	 * @var Container
-	 */
-	protected $container;
-
-	/**
 	 * Property task.
 	 *
 	 * @var string
 	 */
 	protected $task;
-
-	/**
-	 * Instantiate the controller.
-	 *
-	 * @param   IOInterface          $io         The Controller object.
-	 */
-	public function __construct(IOInterface $io = null)
-	{
-		parent::__construct($io);
-	}
 
 	/**
 	 * Execute the controller.
@@ -55,9 +37,26 @@ class GeneratorController extends Controller
 	 */
 	public function execute()
 	{
-		$task = $this->getTask();
+		$template = $this->io->getArgument(0) ? : exit('Please give me a template name.');
 
+		$this->config['template'] = $template;
 
+		// Get Handler
+		$task = array_map('ucfirst', explode('.', $this->getTask()));
+		$task = implode('\\', $task);
+
+		$class = ucfirst($template) . 'Template\\Task\\' . ucfirst($task);
+
+		if (!class_exists($class))
+		{
+			throw new \RuntimeException(sprintf('Task "%s" not support.', $this->getTask()));
+		}
+
+		$controller = new $class($this->io, $this->config);
+
+		$controller->execute();
+
+		$this->out()->out('Template generated.');
 	}
 
 	/**
