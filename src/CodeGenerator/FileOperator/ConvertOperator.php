@@ -8,7 +8,7 @@
 
 namespace CodeGenerator\FileOperator;
 
-use Joomla\Filesystem\File;
+use CodeGenerator\Filesystem\File;
 
 /**
  * Class ConvertOperator

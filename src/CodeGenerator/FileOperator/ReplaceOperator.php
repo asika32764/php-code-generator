@@ -8,8 +8,8 @@
 
 namespace CodeGenerator\FileOperator;
 
-use Joomla\Filesystem\File;
-use Joomla\Filesystem\Path;
+use CodeGenerator\Filesystem\File;
+use CodeGenerator\Filesystem\Path;
 
 /**
  * Class ReplaceOperator
@@ -65,6 +65,7 @@ class ReplaceOperator extends AbstractFileOperator
 
 		foreach ($dir as $file)
 		{
+			/** @var $file \SplFileInfo */
 			if ($file->isDir())
 			{
 				continue;

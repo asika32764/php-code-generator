@@ -1,19 +1,20 @@
 {
-	"name"             : "asika/php-code-generator",
-	"description"      : "PHP Code generator",
-	"require"          : {
+	"name": "asika/php-code-generator",
+	"description": "PHP Code generator",
+	"require": {
 		"asika/joomla-console": "dev-master",
-		"joomla/database"     : "~1.0",
-		"joomla/di"           : "~1.0"
+		"joomla/database": "~1.0",
+		"joomla/di": "~1.0",
+		"joomla/filesystem": "~1.0"
 	},
-	"license"          : "GNU Lesser General Public License",
-	"authors"          : [
+	"license": "GNU Lesser General Public License",
+	"authors": [
 		{
-			"name" : "Simon Asika",
+			"name": "Simon Asika",
 			"email": "asika32764@gmail.com"
 		}
 	],
-	"autoload"         : {
+	"autoload": {
 		"psr-0": {
 			"": "src/"
 		}
