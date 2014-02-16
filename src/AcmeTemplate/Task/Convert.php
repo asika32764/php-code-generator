@@ -41,6 +41,8 @@ class Convert extends TaskController
 		// Flip replace array
 		$this->replace = array_flip($this->replace);
 
+		$this->replace = array_map(array('CodeGenerator\\Utilities\\StringHelper', 'quote'), $this->replace);
+
 		$this->doAction(new Action\ConvertAction);
 	}
 }

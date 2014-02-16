@@ -10,6 +10,7 @@ namespace CodeGenerator\FileOperator;
 
 use CodeGenerator\Filesystem\File;
 use CodeGenerator\Filesystem\Path;
+use CodeGenerator\Utilities\StringHelper;
 
 /**
  * Class CopyOperator
@@ -63,7 +64,7 @@ class CopyOperator extends AbstractFileOperator
 	protected function copyFile($src, $dest, $replace = array())
 	{
 		// Replace dest file name.
-		$dest = strtr($dest, $replace);
+		$dest = StringHelper::parseVariable($dest, $replace);
 
 		if (is_file($dest))
 		{
@@ -71,7 +72,8 @@ class CopyOperator extends AbstractFileOperator
 		}
 		else
 		{
-			$content = strtr(file_get_contents($src), $replace);
+			// Replace content
+			$content = StringHelper::parseVariable(file_get_contents($src), $replace);
 
 			if (File::write($dest, $content))
 			{

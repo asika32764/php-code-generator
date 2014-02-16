@@ -32,11 +32,25 @@ abstract class Template
 	protected $config;
 
 	/**
+	 * Property replace.
+	 *
+	 * @var array
+	 */
+	protected $replace;
+
+	/**
 	 * Property task.
 	 *
 	 * @var string
 	 */
 	protected $task;
+
+	/**
+	 * Using {@...@} to prevent twig conflict.
+	 *
+	 * @var  array
+	 */
+	protected $tagVariable = array('{@', '@}');
 
 	/**
 	 * Constructor.
@@ -48,6 +62,19 @@ abstract class Template
 	{
 		$this->io = $io;
 		$this->config = $config;
+
+		// Register tag variable
+		$this->config['tag.variable'] = $this->tagVariable;
+
+		$this->config = $this->registerConfig($this->io, $this->config);
+
+		$this->replace = $this->registerReplaces($this->io, array());
+
+		// Store replace to config
+		foreach ($this->replace as $key => $val)
+		{
+			$config['replace.' . $key] = $val;
+		}
 	}
 
 	/**
@@ -72,12 +99,8 @@ abstract class Template
 			throw new \RuntimeException(sprintf('Task "%s" not support.', $this->getTask()));
 		}
 
-		$this->config = $this->registerConfig($this->io, $this->config);
-
-		$replace = $this->registerReplaces($this->io, array());
-
 		/** @var \CodeGenerator\Controller\TaskController $controller */
-		$controller = new $class($this->io, $this->config, $replace);
+		$controller = new $class($this->io, $this->config, $this->replace);
 
 		try
 		{

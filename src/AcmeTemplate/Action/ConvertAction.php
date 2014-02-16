@@ -27,7 +27,6 @@ class ConvertAction extends Action
 	{
 		$convertOperator = new ConvertOperator($this->io);
 
-		var_dump($this->config['path.src'], $this->config['path.dest']);
 		$convertOperator->copy($this->config['path.src'], $this->config['path.dest'], $this->replace);
 	}
 }

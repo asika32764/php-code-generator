@@ -5,7 +5,8 @@
 		"asika/joomla-console": "dev-master",
 		"joomla/database": "~1.0",
 		"joomla/di": "~1.0",
-		"joomla/filesystem": "~1.0"
+		"joomla/filesystem": "~1.0",
+		"joomla/registry": "~1.0"
 	},
 	"license": "GNU Lesser General Public License",
 	"authors": [

@@ -1,23 +1,21 @@
 <?php
 /**
- * Part of php-code-generator project. 
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace AcmeTemplate;
+namespace FlowerTemplate;
 
 use CodeGenerator\IO\IOInterface;
 use CodeGenerator\Template\Template;
 use Joomla\Registry\Registry;
 
 /**
- * Class AcmeController
- *
- * @since 1.0
+ * Template main entry.
  */
-class AcmeTemplate extends Template
+class FlowerTemplate extends Template
 {
 	/**
 	 * Using {@...@} to prevent twig conflict.
@@ -27,34 +25,34 @@ class AcmeTemplate extends Template
 	protected $tagVariable = array('{@', '@}');
 
 	/**
-	 * registerReplaces
+	 * Register replace string.
 	 *
-	 * @param IOInterface $io
-	 * @param array       $replace
+	 * @param IOInterface $io      The IO adapter.
+	 * @param array       $replace Replace string array.
 	 *
 	 * @return  array
 	 */
 	protected function registerReplaces($io, $replace = array())
 	{
-		$replace['item.lower'] = 'article';
-		$replace['item.upper'] = 'ARTICLE';
-		$replace['item.cap']   = 'Article';
+		$replace['item.lower'] = 'sakura';
+		$replace['item.upper'] = 'Sakura';
+		$replace['item.cap']   = 'SAKURA';
 
 		return $replace;
 	}
 
 	/**
-	 * registerConfig
+	 * Register config and path.
 	 *
-	 * @param IOInterface    $io
-	 * @param array|Registry $config
+	 * @param IOInterface    $io     The IO adapter.
+	 * @param array|Registry $config Config object or array.
 	 *
 	 * @return  array
 	 */
 	protected function registerConfig($io, $config)
 	{
 		$subTemplate = $io->getOption('t', 'default');
-		$dest        = $io->getArgument(1) ? : 'dest';
+		$dest        = $io->getArgument(1) ? : 'generated';
 
 		$config['path.src']  = __DIR__ . '/Template/' . $subTemplate;
 		$config['path.dest'] = GENERATOR_PATH . '/' . $dest;

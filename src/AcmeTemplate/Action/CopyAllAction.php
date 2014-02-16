@@ -10,6 +10,7 @@ namespace AcmeTemplate\Action;
 
 use CodeGenerator\Action\Action;
 use CodeGenerator\FileOperator\CopyOperator;
+use CodeGenerator\Utilities\StringHelper;
 
 /**
  * Class CopyAllAction
@@ -27,6 +28,6 @@ class CopyAllAction extends Action
 	{
 		$copyOperator = new CopyOperator($this->io);
 
-		$copyOperator->copy($this->config['path.src'], $this->config['path.dest'], $this->replace);
+		$copyOperator->copy($this->config['path.src'], $this->config['path.dest'], $this->config['replace']);
 	}
 }
