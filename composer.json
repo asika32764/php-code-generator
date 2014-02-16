@@ -2,12 +2,11 @@
 	"name": "asika/php-code-generator",
 	"description": "PHP Code generator",
 	"require": {
-		"joomla/database": "~1.0",
-		"joomla/di": "~1.0",
 		"joomla/filesystem": "~1.0",
 		"joomla/registry": "~1.0"
 	},
 	"require-dev": {
+		"joomla/database": "~1.0",
 		"asika/joomla-console": "dev-master"
 	},
 	"license": "GNU Lesser General Public License",
