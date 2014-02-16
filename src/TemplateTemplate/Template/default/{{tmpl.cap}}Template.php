@@ -18,11 +18,11 @@ use Joomla\Registry\Registry;
 class {{tmpl.cap}}Template extends Template
 {
 	/**
-	 * Using  to prevent twig conflict.
+	 * Using {@...@} to prevent twig conflict.
 	 *
 	 * @var  array
 	 */
-	protected $tagVariable = array('');
+	protected $tagVariable = array('{@', '@}');
 
 	/**
 	 * Register replace string.

@@ -102,16 +102,7 @@ abstract class Template
 		/** @var \CodeGenerator\Controller\TaskController $controller */
 		$controller = new $class($this->io, $this->config, $this->replace);
 
-		try
-		{
-			$controller->execute();
-		}
-		catch (\Exception $e)
-		{
-			$this->io->out($e->getMessage());
-
-			return false;
-		}
+		return $controller->execute();
 	}
 
 	/**

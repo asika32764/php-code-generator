@@ -54,11 +54,17 @@ class StringHelper
 	 * @param array  $data
 	 * @param array  $tags
 	 *
+	 * @throws \InvalidArgumentException
 	 * @return  string
 	 */
 	public static function parseVariable($string, $data = array(), $tags = array('{@', '@}'))
 	{
 		$tags = (array) $tags;
+
+		if (empty($tags[0]))
+		{
+			throw new \InvalidArgumentException('No tag variables');
+		}
 
 		if (empty($tags[1]))
 		{

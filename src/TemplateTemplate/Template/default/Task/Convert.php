@@ -8,12 +8,12 @@
 
 namespace {{tmpl.cap}}Template\Task;
 
-use AcmeTemplate\Action;
+use {{tmpl.cap}}Template\Action;
 use {{project.class}}\Controller\TaskController;
 use {{project.class}}\Utilities\StringHelper;
 
 /**
- * Class AcmeController
+ * Convert Controller
  *
  * @since 1.0
  */

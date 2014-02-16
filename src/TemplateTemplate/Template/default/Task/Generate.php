@@ -8,11 +8,11 @@
 
 namespace {{tmpl.cap}}Template\Task;
 
-use AcmeTemplate\Action;
+use {{tmpl.cap}}Template\Action;
 use {{project.class}}\Controller\TaskController;
 
 /**
- * Class AcmeController
+ * Generate Controller
  *
  * @since 1.0
  */
