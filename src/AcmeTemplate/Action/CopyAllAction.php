@@ -26,7 +26,7 @@ class CopyAllAction extends Action
 	 */
 	protected function doExecute()
 	{
-		$copyOperator = new CopyOperator($this->io);
+		$copyOperator = new CopyOperator($this->io, (array) $this->config['tag.variable']);
 
 		$copyOperator->copy($this->config['path.src'], $this->config['path.dest'], $this->config['replace']);
 	}

@@ -10,6 +10,7 @@ namespace CodeGenerator\FileOperator;
 
 use CodeGenerator\Filesystem\File;
 use CodeGenerator\Filesystem\Path;
+use CodeGenerator\IO\IOInterface;
 use CodeGenerator\Utilities\StringHelper;
 
 /**
@@ -25,6 +26,27 @@ class CopyOperator extends AbstractFileOperator
 	 * @var array
 	 */
 	protected $replace = array();
+
+	/**
+	 * Default {@...@} to prevent twig conflict.
+	 *
+	 * @var  array
+	 */
+	protected $tagVariable = array();
+
+	/**
+	 * Constructor.
+	 *
+	 * @param IOInterface $io
+	 * @param array       $tagVariable
+	 */
+	public function __construct(IOInterface $io, $tagVariable = array('{@', '@}'))
+	{
+		$this->tagVariable = $tagVariable;
+
+		parent::__construct($io);
+
+	}
 
 	/**
 	 * copy
@@ -64,7 +86,7 @@ class CopyOperator extends AbstractFileOperator
 	protected function copyFile($src, $dest, $replace = array())
 	{
 		// Replace dest file name.
-		$dest = StringHelper::parseVariable($dest, $replace);
+		$dest = StringHelper::parseVariable($dest, $replace, $this->tagVariable);
 
 		if (is_file($dest))
 		{
@@ -73,7 +95,7 @@ class CopyOperator extends AbstractFileOperator
 		else
 		{
 			// Replace content
-			$content = StringHelper::parseVariable(file_get_contents($src), $replace);
+			$content = StringHelper::parseVariable(file_get_contents($src), $replace, $this->tagVariable);
 
 			if (File::write($dest, $content))
 			{
