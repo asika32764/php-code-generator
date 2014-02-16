@@ -18,7 +18,7 @@ Add this dependency in your `composer.json`.
 Or just create a project:
 
 ``` shell
-php composer.phar create-project asika/php-code-generator php-code-generator 0.2.*
+php composer.phar create-project asika/php-code-generator php-code-generator 0.2.* -s dev
 ```
 
 ## Getting Started
