@@ -30,11 +30,31 @@ class Application extends Console
 	protected $io = null;
 
 	/**
-	 * Property container.
+	 * The Console title.
 	 *
-	 * @var  null
+	 * @var  string
+	 *
+	 * @since  1.0
 	 */
-	protected $container = null;
+	protected $name = 'PHP Code Generator';
+
+	/**
+	 * Version of this application.
+	 *
+	 * @var string
+	 *
+	 * @since  1.0
+	 */
+	protected $version = '1.0';
+
+	/**
+	 * Console description.
+	 *
+	 * @var string
+	 *
+	 * @since  1.0
+	 */
+	protected $description = '';
 
 	/**
 	 * Constructor.
@@ -65,9 +85,7 @@ class Application extends Console
 		define('GENERATOR_PATH', $config['basic_dir.base'] ? : realpath(dirname(__DIR__) . '/../..'));
 		define('JPATH_ROOT', GENERATOR_PATH);
 
-		// $config['basic_dir.dest'] = $this->rootCommand->getOption('p', $config['basic_dir.base'] . '/dest');
-
-		// $config['basic_dir.src']  = $config['basic_dir.base'] . '/template';
+		$this->setHelp('');
 	}
 
 	/**
