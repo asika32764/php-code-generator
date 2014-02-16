@@ -10,8 +10,6 @@ namespace CodeGenerator\Filesystem;
 
 /**
  * Proxy for Joomla Filesystem File
- *
- * @since 1.0
  */
 class File extends \Joomla\Filesystem\File
 {

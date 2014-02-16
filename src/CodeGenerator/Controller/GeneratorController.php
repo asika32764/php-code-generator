@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of Windwalker project. 
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -9,21 +9,21 @@
 namespace CodeGenerator\Controller;
 
 /**
- * Class GeneratorController
- *
- * @since 1.0
+ * Main entry of Code Generator.
  */
 class GeneratorController extends Controller
 {
 	/**
-	 * Property task.
+	 * Task name.
 	 *
 	 * @var string
 	 */
-	protected $task;
+	protected $task = null;
 
 	/**
-	 * Property templatePrefix.
+	 * Template prefix.
+	 *
+	 * Replace it in extended class if you want to integrate to other system..
 	 *
 	 * @var  string
 	 */
@@ -36,7 +36,6 @@ class GeneratorController extends Controller
 	 *                   finish execution. A controller might return false if some precondition for
 	 *                   the controller to run has not been satisfied.
 	 *
-	 * @since   12.1
 	 * @throws  \LogicException
 	 * @throws  \RuntimeException
 	 */
@@ -70,9 +69,9 @@ class GeneratorController extends Controller
 	}
 
 	/**
-	 * getTask
+	 * Task getter.
 	 *
-	 * @return  string
+	 * @return  string Task name.
 	 */
 	public function getTask()
 	{
@@ -80,9 +79,9 @@ class GeneratorController extends Controller
 	}
 
 	/**
-	 * setTask
+	 * Task setter.
 	 *
-	 * @param   string $task
+	 * @param   string $task  Task name.
 	 *
 	 * @return  GeneratorController  Return self to support chaining.
 	 */

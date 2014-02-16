@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of Windwalker project. 
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -14,56 +14,58 @@ namespace CodeGenerator\IO;
 interface IOInterface
 {
 	/**
-	 * getArgument
+	 * Get argument from input.
 	 *
-	 * @param string $offset
-	 * @param string $default
+	 * @param string $offset  Argument offset.
+	 * @param string $default Default if not found.
 	 *
 	 * @return  mixed
 	 */
 	public function getArgument($offset, $default = null);
 
 	/**
-	 * getOption
+	 * Get option from input.
 	 *
-	 * @param string $name
-	 * @param string $default
+	 * @param string $name    Option name.
+	 * @param string $default Default if not found.
 	 *
 	 * @return  mixed
 	 */
 	public function getOption($name, $default = null);
 
 	/**
-	 * out
+	 * Output message.
 	 *
-	 * @param string $msg
+	 * @param string $msg Message text.
 	 *
-	 * @return  $this
+	 * @return  IOInterface Return self to support chaining.
 	 */
 	public function out($msg = '');
 
 	/**
-	 * in
+	 * Ask an question from input stream.
 	 *
-	 * @param string $question
+	 * @param string $question  Question you want to ask.
 	 *
 	 * @return  string|null
 	 */
 	public function in($question = '');
 
 	/**
-	 * err
+	 * Error output.
+	 *
+	 * General stream is the STDERR.
 	 *
 	 * @param string $msg
 	 *
-	 * @return  $this
+	 * @return  IOInterface Return self to support chaining.
 	 */
 	public function err($msg = '');
 
 	/**
-	 * close
+	 * Close system.
 	 *
-	 * @param string $msg
+	 * @param string $msg Message of close.
 	 *
 	 * @return  void
 	 */

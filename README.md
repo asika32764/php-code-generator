@@ -7,9 +7,11 @@ A powerful php scaffolding framework, help developers generate there code by cus
 Add this dependency in your `composer.json`.
 
 ``` json
-"require": {
-    "asika/php-code-generator": "0.2.*",
-    "asika/joomla-console":     "dev-master"
+{
+    "require": {
+        "asika/php-code-generator": "0.2.*",
+        "asika/joomla-console":     "dev-master"
+    }
 }
 ```
 
@@ -75,7 +77,7 @@ Available commands:
 
 ### Generate code by Acme Template
 
-Acme template is a default template in PHP Code Generator, generate code is very easy, please typing:
+Acme template is a default template in PHP Code Generator, generating code is very easy, please type:
 
 ``` bash
 php bin/generator gen acme test/MyApp
@@ -133,7 +135,7 @@ actually you can create it manually, but this will be a little complex, so we ar
 
 Open `FlowerTemplate`, you can set replaced string and copy path here:
 
-#### Register Replaces
+#### Register replacing variables
 
 ``` php
 protected $tagVariable = array('{@', '@}');
@@ -158,11 +160,11 @@ protected function registerReplaces($io, $replace = array())
 }
 ```
 
-This example means we can type `-n {item}` to ba a variable name. And in template code,
-the `{@item.lower@}` /`{@item.upper@}` /`{@item.cap@}` will be replace to the item name. `sakura` is the default value
-if you don't give the `-n` param.
+This example means we can type `-n {item}` to be a variable name. And in template code,
+the `{@item.lower@}` /`{@item.upper@}` /`{@item.cap@}` will be replace to the item name.
 
-This is an example that if `-n` not found, just exit and notice user type this param:
+`sakura` is the default value if you don't give the `-n` param. This is an example that if `-n` not found,
+just exit and notice user type this param:
 
 ``` php
 $item = $io->getOption('n') ? : exit('Please give me item using "-n {item_name}"');
@@ -190,14 +192,16 @@ protected function registerConfig($io, $config)
 ```
 
 You can set some useful config in this method, the most important is `path.src` and `path.dest`. These two config tell PHP Code Generator
-  where code from and where code copied to. `GENERATOR_PATH` is root path of PHP Code Generator, and the `$io->getArgument(1)` means get second argument of your command(First is 0).
+  where code from and where code copied to.
+
+`GENERATOR_PATH` is root path of PHP Code Generator, and the `$io->getArgument(1)` means get second argument of your command(First is 0).
 
 ### Task & Action
 
 We have two default task controller, `Generate` and `Convert`.
 
-Generate task does the code generate action, and Convert task can help you convert code back to a template.
-In task controller we can using `doAction` to execute some different action to do something we want to do.
+Generate task does the code generate action, and Convert task can help us convert code back to a template.
+In task controller we can using `doAction()` to execute some different action to do something we want to do.
 
 The `Generate` controller class:
 
@@ -246,9 +250,9 @@ class Generate extends TaskController
 
 		$this->doAction(new Action\ImportSqlAction);
 
-		$this->doAction(new Action\CloneSomethingFromGithubAction);
+		$this->doAction(new Action\Github\CloneSomeRepoAction);
 
-		$this->doAction(new Action\CreateNewUserAction);
+		$this->doAction(new Action\User\CreateNewUserAction);
 	}
 }
 ```
@@ -259,7 +263,7 @@ The benefit of single action class is that we can re-use every classes in differ
 
 #### Operator classes
 
-We provides two operators new, `copyOperator` help us copy codes and replace tag to variables,
+We provides two operators now, `copyOperator` help us copy codes and replace tag to variables,
 `convertOperator` help us copy code too, but replace variable by tags.
 
 Just new an instance and using copy method:
@@ -270,9 +274,11 @@ $copyOperator = new CopyOperator($this->io, array('{@', '@}'));
 $copyOperator->copy($src, $dest, $replaceArray);
 ```
 
+There will be more operator(eg: `databaseOperator`, `gitOperator`) in the future.
+
 #### Filesystem
 
-There are three filesystem classes: `Path`, `File` and `Folder`, they are extends from Joomla Filesystem package,
+There are three filesystem classes: `Path`, `File` and `Folder`, which extends from Joomla Filesystem package,
 please see: https://github.com/joomla-framework/filesystem
 
 Simple usage:
@@ -305,7 +311,7 @@ we will make the process easier in the future.
 
 Create a command class in `src/CodeGenerator/Joomla/Command/MyTask/MyTask.php`
 
-```
+``` php
 namespace CodeGenerator\Joomla\Command\MyTask;
 
 use CodeGenerator\Controller\GeneratorController;
@@ -334,9 +340,11 @@ class MyTask extends Command
 }
 ```
 
+How to use Joomla Console and Command? See: https://github.com/asika32764/joomla-framework-console
+
 #### (2) Register your command to application
 
-Register this command in `src/CodeGenerator/Joomla/Application::`
+Register this command in `src/CodeGenerator/Joomla/Application::registerCommands()`
 
 ``` php
 protected function registerCommands()
@@ -367,8 +375,6 @@ Available commands:
 
 ```
 
-About Joomla Console, see: https://github.com/asika32764/joomla-framework-console
-
 #### (3) Create a new Task controller
 
 Create a class in `src/FlowerTemplate/Task/MyTask.php`
@@ -392,7 +398,7 @@ Now you can do some actions here.
 
 #### (4) Test your task
 
-Typing this command and you can go into yuor task controller:
+Typing this command and you can go into your task controller:
 
 ``` bash
 php bin/generator mytask <arguments>
@@ -420,3 +426,13 @@ $controller = new GeneratorController(new MyIOAdapter($input, $output));
 $controller->setTask($input->getArgument('task'))->execute();
 ```
 
+OK it's very easy, have a good time in your code recipe.
+
+## Todo
+
+- DatabaseOperator
+- GitOperator
+- FtpOperator
+- UnitTest
+- Completed docblock
+- Easy to add task controller and command

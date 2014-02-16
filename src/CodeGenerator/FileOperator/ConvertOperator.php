@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of Windwalker project. 
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -11,18 +11,16 @@ namespace CodeGenerator\FileOperator;
 use CodeGenerator\Filesystem\File;
 
 /**
- * Class ConvertOperator
- *
- * @since 1.0
+ * Convert Operator
  */
 class ConvertOperator extends CopyOperator
 {
 	/**
-	 * copyFile
+	 * Copy per file.
 	 *
-	 * @param string $src
-	 * @param string $dest
-	 * @param array  $replace
+	 * @param string $src     Source path.
+	 * @param string $dest    Destination path.
+	 * @param array  $replace Replace array.
 	 *
 	 * @return  void
 	 */

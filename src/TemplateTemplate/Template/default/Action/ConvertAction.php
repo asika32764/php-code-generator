@@ -12,14 +12,12 @@ use {{project.class}}\Action\Action;
 use {{project.class}}\FileOperator\ConvertOperator;
 
 /**
- * Class ConvertAction
- *
- * @since 1.0
+ * ConvertAction
  */
 class ConvertAction extends Action
 {
 	/**
-	 * doExecute
+	 * Execute this action.
 	 *
 	 * @return  mixed
 	 */

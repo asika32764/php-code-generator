@@ -10,8 +10,6 @@ namespace CodeGenerator\Filesystem;
 
 /**
  * Proxy for Joomla Filesystem Path
- *
- * @since 1.0
  */
 class Path extends \Joomla\Filesystem\Path
 {

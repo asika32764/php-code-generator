@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of Windwalker project. 
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -8,14 +8,12 @@
 
 namespace CodeGenerator\Controller;
 
-use CodeGenerator\DI\Container;
 use CodeGenerator\IO\IOInterface;
-use CodeGenerator\Joomla\IO;
 use Joomla\Input;
 use Joomla\Registry\Registry;
 
 /**
- * CodeGenerator Controller.
+ * Base controller class.
  */
 abstract class Controller implements ControllerInterface
 {
@@ -79,9 +77,9 @@ abstract class Controller implements ControllerInterface
 	}
 
 	/**
-	 * close
+	 * Close system.
 	 *
-	 * @param string $text
+	 * @param string $text Close message.
 	 *
 	 * @return  void
 	 */

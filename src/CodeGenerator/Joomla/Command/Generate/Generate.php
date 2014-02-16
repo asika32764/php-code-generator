@@ -13,9 +13,7 @@ use CodeGenerator\Joomla\IO;
 use Joomla\Console\Command\Command;
 
 /**
- * Class Template
- *
- * @since 1.0
+ * Generate
  */
 class Generate extends Command
 {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of Windwalker project. 
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -14,14 +14,12 @@ use CodeGenerator\IO\IOInterface;
 use CodeGenerator\Utilities\StringHelper;
 
 /**
- * Class CopyOperator
- *
- * @since 1.0
+ * Copy Operator
  */
 class CopyOperator extends AbstractFileOperator
 {
 	/**
-	 * Property replace.
+	 * Replace string.
 	 *
 	 * @var array
 	 */
@@ -37,23 +35,22 @@ class CopyOperator extends AbstractFileOperator
 	/**
 	 * Constructor.
 	 *
-	 * @param IOInterface $io
-	 * @param array       $tagVariable
+	 * @param IOInterface $io          IO adapter.
+	 * @param array       $tagVariable Tag variable.
 	 */
 	public function __construct(IOInterface $io, $tagVariable = array('{@', '@}'))
 	{
 		$this->tagVariable = $tagVariable;
 
 		parent::__construct($io);
-
 	}
 
 	/**
-	 * copy
+	 * Do copy action.
 	 *
-	 * @param string $src
-	 * @param string $dest
-	 * @param array  $replace
+	 * @param string $src     Source path.
+	 * @param string $dest    Destination path.
+	 * @param array  $replace Replace array.
 	 *
 	 * @return  void
 	 */
@@ -75,11 +72,11 @@ class CopyOperator extends AbstractFileOperator
 	}
 
 	/**
-	 * copyFile
+	 * Copy per file.
 	 *
-	 * @param string $src
-	 * @param string $dest
-	 * @param array  $replace
+	 * @param string $src     Source path.
+	 * @param string $dest    Destination path.
+	 * @param array  $replace Replace array.
 	 *
 	 * @return  void
 	 */
@@ -105,11 +102,11 @@ class CopyOperator extends AbstractFileOperator
 	}
 
 	/**
-	 * copyDir
+	 * Copy whole dir.
 	 *
-	 * @param string $src
-	 * @param string $dest
-	 * @param array  $replace
+	 * @param string $src     Source path.
+	 * @param string $dest    Destination path.
+	 * @param array  $replace Replace array.
 	 *
 	 * @return  void
 	 */
@@ -136,7 +133,7 @@ class CopyOperator extends AbstractFileOperator
 	}
 
 	/**
-	 * getReplace
+	 * Replace array getter.
 	 *
 	 * @return  array
 	 */
@@ -146,9 +143,9 @@ class CopyOperator extends AbstractFileOperator
 	}
 
 	/**
-	 * setReplace
+	 * Replace array setter.
 	 *
-	 * @param   array $replace
+	 * @param   array $replace  Replace array.
 	 *
 	 * @return  CopyOperator  Return self to support chaining.
 	 */

@@ -13,9 +13,7 @@ use {{project.class}}\Controller\TaskController;
 use {{project.class}}\Utilities\StringHelper;
 
 /**
- * Convert Controller
- *
- * @since 1.0
+ * Convert Task Controller
  */
 class Convert extends TaskController
 {
@@ -26,7 +24,6 @@ class Convert extends TaskController
 	 *                   finish execution. A controller might return false if some precondition for
 	 *                   the controller to run has not been satisfied.
 	 *
-	 * @since   1.0
 	 * @throws  \LogicException
 	 * @throws  \RuntimeException
 	 */

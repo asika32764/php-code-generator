@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of Windwalker project.
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -14,8 +14,6 @@ use Joomla\Console\Command\Command;
 
 /**
  * Class Init
- *
- * @since  1.0
  */
 class Init extends Command
 {

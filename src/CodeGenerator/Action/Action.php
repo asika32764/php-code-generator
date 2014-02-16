@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of Windwalker project. 
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -12,44 +12,44 @@ use CodeGenerator\Controller\TaskController;
 use CodeGenerator\IO\IOInterface;
 
 /**
- * Class Action
+ * A Base Action class.
  *
  * @since 1.0
  */
 abstract class Action
 {
 	/**
-	 * Property controller.
+	 * Task controller.
 	 *
 	 * @var TaskController
 	 */
 	protected $controller;
 
 	/**
-	 * Property replace.
+	 * Array of replacing string.
 	 *
 	 * @var array
 	 */
 	protected $replace;
 
 	/**
-	 * Property config.
+	 * Config.
 	 *
 	 * @var \Joomla\Registry\Registry
 	 */
 	protected $config;
 
 	/**
-	 * Property io.
+	 * IO Adapter.
 	 *
 	 * @var IOInterface
 	 */
 	protected $io;
 
 	/**
-	 * execute
+	 * Execute this action.
 	 *
-	 * @param TaskController $controller
+	 * @param TaskController $controller  Task controller.
 	 *
 	 * @return  mixed
 	 */
@@ -67,7 +67,7 @@ abstract class Action
 	}
 
 	/**
-	 * doExecute
+	 * Do this execute.
 	 *
 	 * @return  mixed
 	 */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of Windwalker project. 
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -11,12 +11,9 @@ namespace CodeGenerator\Controller;
 use CodeGenerator\Action\Action;
 use CodeGenerator\IO\IOInterface;
 use Joomla\Registry\Registry;
-use Joomla\DI\Container;
 
 /**
- * Class TaskController
- *
- * @since 1.0
+ * Base controller of task.
  */
 abstract class TaskController extends Controller
 {
@@ -25,7 +22,7 @@ abstract class TaskController extends Controller
 	 *
 	 * @var Registry
 	 */
-	public $config;
+	public $config = null;
 
 	/**
 	 * Property replace.
@@ -37,9 +34,9 @@ abstract class TaskController extends Controller
 	/**
 	 * Constructor.
 	 *
-	 * @param IOInterface $io
-	 * @param Registry    $config
-	 * @param array       $replace
+	 * @param IOInterface $io      IO adapter.
+	 * @param Registry    $config  Config.
+	 * @param array       $replace Replacing string array.
 	 */
 	public function __construct(IOInterface $io, Registry $config = null, $replace = array())
 	{
@@ -49,11 +46,11 @@ abstract class TaskController extends Controller
 	}
 
 	/**
-	 * doAction
+	 * Do an action by action class.
 	 *
-	 * @param Action $action
+	 * @param Action $action Action class.
 	 *
-	 * @return  $this
+	 * @return  TaskController  Return self to support chaining.
 	 */
 	public function doAction(Action $action)
 	{
@@ -63,10 +60,10 @@ abstract class TaskController extends Controller
 	}
 
 	/**
-	 * get
+	 * Get config.
 	 *
-	 * @param string $key
-	 * @param string $default
+	 * @param string $key     Config key.
+	 * @param string $default Default value if not exists.
 	 *
 	 * @return  mixed
 	 */
@@ -76,12 +73,12 @@ abstract class TaskController extends Controller
 	}
 
 	/**
-	 * set
+	 * Set config.
 	 *
-	 * @param string $key
-	 * @param string $value
+	 * @param string $key   Config key.
+	 * @param string $value Value you want to set.
 	 *
-	 * @return  TaskController
+	 * @return  TaskController  Return self to support chaining.
 	 */
 	public function set($key, $value)
 	{
@@ -91,9 +88,9 @@ abstract class TaskController extends Controller
 	}
 
 	/**
-	 * getConfig
+	 * Get config object.
 	 *
-	 * @return  Registry
+	 * @return  Registry Config object.
 	 */
 	public function getConfig()
 	{
@@ -101,9 +98,9 @@ abstract class TaskController extends Controller
 	}
 
 	/**
-	 * setConfig
+	 * Set config object
 	 *
-	 * @param   Registry $config
+	 * @param   Registry $config Config object.
 	 *
 	 * @return  TaskController  Return self to support chaining.
 	 */

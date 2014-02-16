@@ -16,14 +16,12 @@ use Joomla\Input;
 use Joomla\Registry\Registry;
 
 /**
- * Class Application
- *
- * @since 1.0
+ * Application of Joomla Console
  */
 class Application extends Console
 {
 	/**
-	 * Property io.
+	 * IO adapter.
 	 *
 	 * @var  IO
 	 */
@@ -33,8 +31,6 @@ class Application extends Console
 	 * The Console title.
 	 *
 	 * @var  string
-	 *
-	 * @since  1.0
 	 */
 	protected $name = 'PHP Code Generator';
 
@@ -42,8 +38,6 @@ class Application extends Console
 	 * Version of this application.
 	 *
 	 * @var string
-	 *
-	 * @since  1.0
 	 */
 	protected $version = '1.0';
 
@@ -51,17 +45,15 @@ class Application extends Console
 	 * Console description.
 	 *
 	 * @var string
-	 *
-	 * @since  1.0
 	 */
 	protected $description = '';
 
 	/**
 	 * Constructor.
 	 *
-	 * @param Input\Cli $input
-	 * @param Registry  $config
-	 * @param CliOutput $output
+	 * @param Input\Cli $input  Input object.
+	 * @param Registry  $config Config.
+	 * @param CliOutput $output Output object.
 	 */
 	public function __construct(Input\Cli $input = null, Registry $config = null, CliOutput $output = null)
 	{
@@ -69,7 +61,8 @@ class Application extends Console
 
 		$this->registerCommands();
 
-		$this->rootCommand->addOption(
+		$this->rootCommand
+			->addOption(
 				array('p', 'path'),
 				'',
 				'Dest path.',
@@ -89,7 +82,9 @@ class Application extends Console
 	}
 
 	/**
-	 * registerCommands
+	 * Register first level commands.
+	 *
+	 * @TODO: Auto register first level command that we don't need register every command once.
 	 *
 	 * @return  void
 	 */

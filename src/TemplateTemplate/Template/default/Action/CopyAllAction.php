@@ -12,14 +12,12 @@ use {{project.class}}\Action\Action;
 use {{project.class}}\FileOperator\CopyOperator;
 
 /**
- * Class CopyAllAction
- *
- * @since 1.0
+ * CopyAllAction
  */
 class CopyAllAction extends Action
 {
 	/**
-	 * doExecute
+	 * Execute this action.
 	 *
 	 * @return  mixed
 	 */

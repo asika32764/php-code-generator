@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of Windwalker project. 
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -12,24 +12,22 @@ use CodeGenerator\Filesystem\File;
 use CodeGenerator\Filesystem\Path;
 
 /**
- * Class ReplaceOperator
- *
- * @since 1.0
+ * Replace Operator
  */
 class ReplaceOperator extends AbstractFileOperator
 {
 	/**
-	 * Property replace.
+	 * Replace string.
 	 *
 	 * @var array
 	 */
 	protected $replace;
 
 	/**
-	 * replace
+	 * Replace variable of files.
 	 *
-	 * @param string $src
-	 * @param array  $replace
+	 * @param string $src     Target path.
+	 * @param array  $replace Replace array.
 	 *
 	 * @return  void
 	 */
@@ -50,10 +48,10 @@ class ReplaceOperator extends AbstractFileOperator
 	}
 
 	/**
-	 * replaceDir
+	 * Replace dir.
 	 *
-	 * @param \SplFileInfo $src
-	 * @param array        $replace
+	 * @param \SplFileInfo $src     Target dir.
+	 * @param array        $replace Replace array.
 	 *
 	 * @return  void
 	 */
@@ -76,10 +74,10 @@ class ReplaceOperator extends AbstractFileOperator
 	}
 
 	/**
-	 * replaceFile
+	 * Replace per file.
 	 *
-	 * @param \SplFileInfo $file
-	 * @param array        $replace
+	 * @param \SplFileInfo $file    Target dir.
+	 * @param array        $replace Replace array.
 	 *
 	 * @return  void
 	 */
@@ -103,7 +101,7 @@ class ReplaceOperator extends AbstractFileOperator
 	}
 
 	/**
-	 * getReplace
+	 * Replace array getter.
 	 *
 	 * @return  array
 	 */
@@ -113,11 +111,11 @@ class ReplaceOperator extends AbstractFileOperator
 	}
 
 	/**
-	 * setReplace
+	 * Replace array setter.
 	 *
-	 * @param   array $replace
+	 * @param   array $replace  Replace array.
 	 *
-	 * @return  ReplaceOperator  Return self to support chaining.
+	 * @return  CopyOperator  Return self to support chaining.
 	 */
 	public function setReplace($replace)
 	{

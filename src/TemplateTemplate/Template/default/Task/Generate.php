@@ -12,9 +12,7 @@ use {{tmpl.cap}}Template\Action;
 use {{project.class}}\Controller\TaskController;
 
 /**
- * Generate Controller
- *
- * @since 1.0
+ * Generate Task Controller
  */
 class Generate extends TaskController
 {
@@ -25,7 +23,6 @@ class Generate extends TaskController
 	 *                   finish execution. A controller might return false if some precondition for
 	 *                   the controller to run has not been satisfied.
 	 *
-	 * @since   1.0
 	 * @throws  \LogicException
 	 * @throws  \RuntimeException
 	 */

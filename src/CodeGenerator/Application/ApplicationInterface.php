@@ -23,7 +23,7 @@ interface ApplicationInterface
 	/**
 	 * Set IO adapter.
 	 *
-	 * @param   \CodeGenerator\IO\IOInterface $io
+	 * @param   \CodeGenerator\IO\IOInterface $io IO adapter.
 	 *
 	 * @return  ApplicationInterface  Return self to support chaining.
 	 */

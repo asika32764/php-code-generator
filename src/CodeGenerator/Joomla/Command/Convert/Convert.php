@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of Windwalker project.
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2011 - 2014 SMS Taiwan, Inc. All rights reserved.
  * @license    GNU General Public License version 2 or later; see LICENSE
@@ -13,9 +13,7 @@ use CodeGenerator\Joomla\IO;
 use Joomla\Console\Command\Command;
 
 /**
- * Class Convert
- *
- * @since  2.0
+ * Convert
  */
 class Convert extends Command
 {
