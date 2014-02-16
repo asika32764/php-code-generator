@@ -6,7 +6,7 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace FlowerTemplate;
+namespace TemplateTemplate;
 
 use CodeGenerator\IO\IOInterface;
 use CodeGenerator\Template\Template;
@@ -15,14 +15,14 @@ use Joomla\Registry\Registry;
 /**
  * Template main entry.
  */
-class FlowerTemplate extends Template
+class TemplateTemplate extends Template
 {
 	/**
-	 * Using  to prevent twig conflict.
+	 * Tag variable.
 	 *
 	 * @var  array
 	 */
-	protected $tagVariable = array('');
+	protected $tagVariable = array('{{', '}}');
 
 	/**
 	 * Register replace string.
@@ -35,19 +35,24 @@ class FlowerTemplate extends Template
 	 */
 	protected function registerReplaces($io, $replace = array())
 	{
-		$item = $io->getOption('n', 'sakura');
-
-		/*
-		 * Replace with your code name.
-		 */
+		$tmpl = $io->getArgument(1) ? : 'flower';
 
 		// Set item name, default is sakura
+
+		$item = $io->getOption('n', 'sakura');
+
 		$replace['item.lower'] = strtolower($item);
 		$replace['item.upper'] = strtoupper($item);
 		$replace['item.cap']   = ucfirst($item);
 
+
 		// Set project name
 		$replace['project.class'] = 'CodeGenerator';
+
+		// Set Template name
+		$replace['tmpl.lower'] = strtolower($tmpl);
+		$replace['tmpl.upper'] = strtoupper($tmpl);
+		$replace['tmpl.cap']   = ucfirst($tmpl);
 
 		return $replace;
 	}
@@ -58,19 +63,21 @@ class FlowerTemplate extends Template
 	 * @param IOInterface    $io     The IO adapter.
 	 * @param array|Registry $config Config object or array.
 	 *
+	 * @throws \InvalidArgumentException
 	 * @return  array
 	 */
 	protected function registerConfig($io, $config)
 	{
-		/*
-		 * Replace with your project path.
-		 */
-
 		$subTemplate = $io->getOption('t', 'default');
-		$dest        = $io->getArgument(1) ? : 'generated';
+		$dest        = $io->getArgument(1) ? : 'flower';
+
+		if (strtolower($dest) == 'template')
+		{
+			throw new \InvalidArgumentException('Please don\'t use "template" as your template name');
+		}
 
 		$config['path.src']  = __DIR__ . '/Template/' . $subTemplate;
-		$config['path.dest'] = GENERATOR_PATH . '/' . $dest;
+		$config['path.dest'] = GENERATOR_PATH . '/src/' . ucfirst($dest) . 'Template';
 
 		return $config;
 	}

@@ -6,16 +6,16 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace FlowerTemplate;
+namespace {{tmpl.cap}}Template;
 
-use CodeGenerator\IO\IOInterface;
-use CodeGenerator\Template\Template;
+use {{project.class}}\IO\IOInterface;
+use {{project.class}}\Template\Template;
 use Joomla\Registry\Registry;
 
 /**
  * Template main entry.
  */
-class FlowerTemplate extends Template
+class {{tmpl.cap}}Template extends Template
 {
 	/**
 	 * Using  to prevent twig conflict.
@@ -35,19 +35,19 @@ class FlowerTemplate extends Template
 	 */
 	protected function registerReplaces($io, $replace = array())
 	{
-		$item = $io->getOption('n', 'sakura');
+		$item = $io->getOption('n', '{{item.lower}}');
 
 		/*
 		 * Replace with your code name.
 		 */
 
-		// Set item name, default is sakura
+		// Set item name, default is {{item.lower}}
 		$replace['item.lower'] = strtolower($item);
 		$replace['item.upper'] = strtoupper($item);
 		$replace['item.cap']   = ucfirst($item);
 
 		// Set project name
-		$replace['project.class'] = 'CodeGenerator';
+		$replace['project.class'] = '{{project.class}}';
 
 		return $replace;
 	}

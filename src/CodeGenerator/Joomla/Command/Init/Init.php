@@ -6,18 +6,18 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace CodeGenerator\Joomla\Command\Template\Convert;
+namespace CodeGenerator\Joomla\Command\Init;
 
 use CodeGenerator\Controller\GeneratorController;
 use CodeGenerator\Joomla\IO;
 use Joomla\Console\Command\Command;
 
 /**
- * Class Convert
+ * Class Init
  *
- * @since  2.0
+ * @since  1.0
  */
-class Convert extends Command
+class Init extends Command
 {
 	/**
 	 * An enabled flag.
@@ -31,21 +31,21 @@ class Convert extends Command
 	 *
 	 * @var  string
 	 */
-	protected $name = 'convert';
+	protected $name = 'tmpl-init';
 
 	/**
 	 * The command description.
 	 *
 	 * @var  string
 	 */
-	protected $description = 'Convert an extension back to a template.';
+	protected $description = 'Init a new extension.';
 
 	/**
 	 * The usage to tell user how to use this command.
 	 *
 	 * @var string
 	 */
-	protected $usage = 'convert <cmd><command></cmd> <option>[option]</option>';
+	protected $usage = 'tmpl-init <cmd><tmpl-name></cmd> <option>[option]</option>';
 
 	/**
 	 * Configure command information.
@@ -60,16 +60,26 @@ class Convert extends Command
 	}
 
 	/**
-	 * Execute this command.
+	 * doExecute
 	 *
-	 * @return int|void
+	 * @throws \InvalidArgumentException
+	 * @return  mixed
 	 */
 	protected function doExecute()
 	{
+		if (empty($this->input->args[0]))
+		{
+			throw new \InvalidArgumentException('Please give me template name.');
+		}
+
+		$this->input->args[1] = $this->input->args[0];
+
+		$this->input->args[0] = 'template';
+
 		$io = new IO($this);
 
 		$controller = new GeneratorController($io);
 
-		$controller->setTask('convert')->execute();
+		$controller->setTask('generate')->execute();
 	}
 }

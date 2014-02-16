@@ -8,14 +8,10 @@
 
 namespace CodeGenerator\Joomla;
 
-use CodeGenerator\Application\ApplicationInterface;
-use CodeGenerator\IO\IOInterface;
-use CodeGenerator\Joomla\Command\Generate\Generate;
-use CodeGenerator\Joomla\Command\Template\Template;
+use CodeGenerator\Joomla\Command;
 use Joomla\Application\Cli\CliOutput;
 use Joomla\Console\Console;
 use Joomla\Console\Option\Option;
-use Joomla\DI\Container;
 use Joomla\Input;
 use Joomla\Registry\Registry;
 
@@ -81,7 +77,8 @@ class Application extends Console
 	 */
 	protected function registerCommands()
 	{
-		$this->addCommand(new Template);
-		$this->addCommand(new Generate);
+		$this->addCommand(new Command\Generate\Generate);
+		$this->addCommand(new Command\Init\Init);
+		$this->addCommand(new Command\Convert\Convert);
 	}
 }

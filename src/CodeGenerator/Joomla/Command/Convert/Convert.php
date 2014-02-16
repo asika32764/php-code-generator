@@ -6,19 +6,18 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace GeneratorBundle\Command\Generator\Init;
+namespace CodeGenerator\Joomla\Command\Convert;
 
-use GeneratorBundle\Controller\GeneratorController;
-use Windwalker\Console\Command\Command;
-
-defined('WINDWALKER') or die;
+use CodeGenerator\Controller\GeneratorController;
+use CodeGenerator\Joomla\IO;
+use Joomla\Console\Command\Command;
 
 /**
- * Class Init
+ * Class Convert
  *
  * @since  2.0
  */
-class InitCommand extends Command
+class Convert extends Command
 {
 	/**
 	 * An enabled flag.
@@ -32,21 +31,21 @@ class InitCommand extends Command
 	 *
 	 * @var  string
 	 */
-	protected $name = 'init';
+	protected $name = 'tmpl-convert';
 
 	/**
 	 * The command description.
 	 *
 	 * @var  string
 	 */
-	protected $description = 'Init a new extension.';
+	protected $description = 'Convert a code folder back to a template.';
 
 	/**
 	 * The usage to tell user how to use this command.
 	 *
 	 * @var string
 	 */
-	protected $usage = 'init <cmd><command></cmd> <option>[option]</option>';
+	protected $usage = 'tmpl-convert <cmd><tmpl-name></cmd> <cmd><dest-folder></cmd> <option>[option]</option>';
 
 	/**
 	 * Configure command information.
@@ -67,8 +66,10 @@ class InitCommand extends Command
 	 */
 	protected function doExecute()
 	{
-		$generator = new GeneratorController($this);
+		$io = new IO($this);
 
-		$generator->setTask('init')->execute();
+		$controller = new GeneratorController($io);
+
+		$controller->setTask('convert')->execute();
 	}
 }
