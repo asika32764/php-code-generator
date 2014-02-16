@@ -8,8 +8,8 @@
 
 namespace AcmeTemplate\Task;
 
-use AcmeTemplate\AcmeController;
 use AcmeTemplate\Action;
+use CodeGenerator\Controller\TaskController;
 use CodeGenerator\IO\IOInterface;
 use Joomla\Registry\Registry;
 
@@ -18,19 +18,8 @@ use Joomla\Registry\Registry;
  *
  * @since 1.0
  */
-class Generate extends AcmeController
+class Generate extends TaskController
 {
-	/**
-	 * Constructor.
-	 *
-	 * @param IOInterface $io
-	 * @param Registry    $config
-	 */
-	public function __construct(IOInterface $io, Registry $config = null)
-	{
-		parent::__construct($io, $config);
-	}
-
 	/**
 	 * Execute the controller.
 	 *

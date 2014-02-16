@@ -8,8 +8,6 @@
 
 namespace CodeGenerator\Controller;
 
-use CodeGenerator\DI\Container;
-
 /**
  * Class GeneratorController
  *
@@ -25,6 +23,13 @@ class GeneratorController extends Controller
 	protected $task;
 
 	/**
+	 * Property templatePrefix.
+	 *
+	 * @var  string
+	 */
+	protected $templateName = '%sTemplate\\%sTemplate';
+
+	/**
 	 * Execute the controller.
 	 *
 	 * @return  boolean  True if controller finished execution, false if the controller did not
@@ -37,26 +42,31 @@ class GeneratorController extends Controller
 	 */
 	public function execute()
 	{
-		$template = $this->io->getArgument(0) ? : exit('Please give me a template name.');
+		$template = $this->io->getArgument(0) ? : exit("Please give me a template name.\n");
 
 		$this->config['template'] = $template;
 
-		// Get Handler
-		$task = array_map('ucfirst', explode('.', $this->getTask()));
-		$task = implode('\\', $task);
-
-		$class = ucfirst($template) . 'Template\\Task\\' . ucfirst($task);
+		// Get Template Handler
+		$class = sprintf($this->templateName, ucfirst($template), ucfirst($template));
 
 		if (!class_exists($class))
 		{
-			throw new \RuntimeException(sprintf('Task "%s" not support.', $this->getTask()));
+			throw new \LogicException(sprintf('Template "%s" not found.', $template));
 		}
 
-		$controller = new $class($this->io, $this->config);
+		/** @var $template \CodeGenerator\Template\Template */
+		$template = new $class($this->io, $this->config);
 
-		$controller->execute();
+		if ($template->setTask($this->getTask())->execute())
+		{
+			$this->out()->out('Template generated.');
 
-		$this->out()->out('Template generated.');
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**

@@ -35,6 +35,20 @@ abstract class TaskController extends Controller
 	public $replace = array();
 
 	/**
+	 * Constructor.
+	 *
+	 * @param IOInterface $io
+	 * @param Registry    $config
+	 * @param array       $replace
+	 */
+	public function __construct(IOInterface $io, Registry $config = null, $replace = array())
+	{
+		$this->replace = $replace;
+
+		parent::__construct($io, $config);
+	}
+
+	/**
 	 * doAction
 	 *
 	 * @param Action $action

@@ -27,6 +27,6 @@ class CopyAllAction extends Action
 	{
 		$copyOperator = new CopyOperator($this->io);
 
-		$copyOperator->copy($this->config['path.src'], $this->config['path.dest']);
+		$copyOperator->copy($this->config['path.src'], $this->config['path.dest'], $this->replace);
 	}
 }
