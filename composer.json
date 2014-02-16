@@ -1,6 +1,9 @@
 {
 	"name": "asika/php-code-generator",
-	"description": "PHP Code generator",
+	"description": "PHP Code generator. She is Goddess, she is the Creator.",
+	"type": "php-code-generator",
+	"keywords": ["code", "generator", "builder", "scaffolding", "scaffold"],
+	"homepage": "https://github.com/asika32764/php-code-generator",
 	"require": {
 		"joomla/filesystem": "~1.0",
 		"joomla/registry": "~1.0"
