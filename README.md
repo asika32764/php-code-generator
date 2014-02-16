@@ -1,6 +1,6 @@
 # PHP Code Generator
 
-A powerful php scaffolding framework, help developers generate there code by custom templates.
+A powerful php scaffolding framework, help developers generate their code by custom templates.
 
 ## Installation via Composer
 
