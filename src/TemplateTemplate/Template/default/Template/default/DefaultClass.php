@@ -7,39 +7,39 @@
  */
 
 /**
- * This is a default class for {{project.class}} {{tmpl.cap}} template
+ * This is a default class for {@project.class@} {@tmpl.cap@} template
  *
  * @since 1.0
  */
 class DefaultClass
 {
 	/**
-	 * Property {{item.lower}}.
+	 * Property {@item.lower@}.
 	 *
 	 * @var  string
 	 */
-	protected ${{item.lower}} = '{{item.upper}}';
+	protected ${@item.lower@} = '{@item.upper@}';
 
 	/**
-	 * get{{item.cap}}
+	 * get{@item.cap@}
 	 *
 	 * @return  string
 	 */
-	public function get{{item.cap}}()
+	public function get{@item.cap@}()
 	{
-		return $this->{{item.lower}};
+		return $this->{@item.lower@};
 	}
 
 	/**
-	 * set{{item.cap}}
+	 * set{@item.cap@}
 	 *
-	 * @param   string ${{item.lower}}
+	 * @param   string ${@item.lower@}
 	 *
 	 * @return  DefaultClass  Return self to support chaining.
 	 */
-	public function set{{item.cap}}(${{item.lower}})
+	public function set{@item.cap@}(${@item.lower@})
 	{
-		$this->{{item.lower}} = ${{item.lower}};
+		$this->{@item.lower@} = ${@item.lower@};
 
 		return $this;
 	}

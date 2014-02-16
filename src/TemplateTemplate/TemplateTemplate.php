@@ -35,12 +35,10 @@ class TemplateTemplate extends Template
 	 */
 	protected function registerReplaces($io, $replace = array())
 	{
+		$item = $io->getOption('n', 'sakura');
 		$tmpl = $io->getArgument(1) ? : 'flower';
 
 		// Set item name, default is sakura
-
-		$item = $io->getOption('n', 'sakura');
-
 		$replace['item.lower'] = strtolower($item);
 		$replace['item.upper'] = strtoupper($item);
 		$replace['item.cap']   = ucfirst($item);
