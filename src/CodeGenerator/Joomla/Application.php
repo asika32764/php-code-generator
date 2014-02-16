@@ -74,6 +74,11 @@ class Application extends Console
 				Option::IS_GLOBAL
 			);
 
+		if (defined('PHP_WINDOWS_VERSION_BUILD'))
+		{
+			$this->rootCommand->addOption('no-ansi', 1, 'Suppress ANSI colors on unsupported terminals.',   Option::IS_GLOBAL);
+		}
+
 		// Set basic dir.
 		define('GENERATOR_PATH', $config['basic_dir.base'] ? : realpath(dirname(__DIR__) . '/../..'));
 		define('JPATH_ROOT', GENERATOR_PATH);
