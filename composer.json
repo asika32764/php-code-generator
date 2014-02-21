@@ -2,9 +2,13 @@
 	"name"             : "asika/php-code-generator",
 	"description"      : "PHP Code generator",
 	"require"          : {
-		"asika/joomla-console": "dev-master",
-		"joomla/database"     : "~1.0"
 	},
+	"require-dev" : {
+		"asika/joomla-console": "1.1.*"
+	},
+	"suggest": {
+        "asika/joomla-console": "If you want to use PHP Code Generator self not integrate to other system."
+    },
 	"license"          : "GNU Lesser General Public License",
 	"authors"          : [
 		{
