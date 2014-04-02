@@ -1,0 +1,12 @@
+# System Files #
+.*
+
+# Composer #
+vendor/*
+
+# Tests #
+phpunit.xml
+
+# Code Generator #
+template/*
+dest/*
