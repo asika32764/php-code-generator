@@ -9,6 +9,7 @@
 namespace CodeGenerator\FileOperator;
 
 use Joomla\Filesystem\File;
+use Joomla\Filesystem\Path;
 
 /**
  * Class CopyOperator
@@ -35,6 +36,9 @@ class CopyOperator extends AbstractFileOperator
 	 */
 	public function copy($src, $dest, $replace = array())
 	{
+		$src  = Path::clean($src);
+		$dest = Path::clean($dest);
+
 		$replace = $replace ? : $this->replace;
 
 		if (is_file($src))
