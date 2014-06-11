@@ -10,7 +10,7 @@
 	},
 	"require-dev": {
 		"joomla/database": "~1.0",
-		"asika/joomla-console": "dev-master"
+		"asika/joomla-console": "1.1.*"
 	},
 	"license": "GNU Lesser General Public License",
 	"authors": [
