@@ -1,0 +1,476 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>PHP Code Generator by asika32764</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>PHP Code Generator</h1>
+        <p>She is Goddess, she is the Creator.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/asika32764/php-code-generator" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/asika32764/php-code-generator/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/asika32764/php-code-generator/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a name="php-code-generator" class="anchor" href="#php-code-generator"><span class="octicon octicon-link"></span></a>PHP Code Generator</h1>
+
+<p>A powerful php scaffolding framework, help developers generate their code by custom templates.</p>
+
+<h2>
+<a name="installation-via-composer" class="anchor" href="#installation-via-composer"><span class="octicon octicon-link"></span></a>Installation via Composer</h2>
+
+<p>Add this dependency in your <code>composer.json</code>.</p>
+
+<div class="highlight highlight-json"><pre><span class="p">{</span>
+    <span class="nt">"require"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">"asika/php-code-generator"</span><span class="p">:</span> <span class="s2">"0.2.*"</span><span class="p">,</span>
+        <span class="nt">"asika/joomla-console"</span><span class="p">:</span>     <span class="s2">"dev-master"</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Or just create a project:</p>
+
+<pre lang="shell"><code>php composer.phar create-project asika/php-code-generator php-code-generator 0.2.* -s dev
+</code></pre>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>PHP Code Generator is a command line based program, we will do everything though CLI. Please type:</p>
+
+<pre lang="shell"><code>php bin/generator
+</code></pre>
+
+<p>You will get this help message:</p>
+
+<pre><code>PHP Code Generator - version: 1.0
+------------------------------------------------------------
+
+[generator.php Help]
+
+The default application command
+
+Usage:
+  generator.php &lt;command&gt; [option]
+
+
+Options:
+
+  -h / --help
+      Display this help message.
+
+  -q / --quiet
+      Do not output any message.
+
+  -v / --verbose
+      Increase the verbosity of messages.
+
+  --no-ansi
+      Suppress ANSI colors on unsupported terminals.
+
+  -p / --path
+      Dest path.
+
+  -t
+      Sub template name.
+
+
+Available commands:
+
+  help            List all arguments and show usage &amp; manual.
+
+  gen             Genarate operation.
+
+  tmpl-init       Init a new extension.
+
+  tmpl-convert    Convert a code folder back to a template.
+</code></pre>
+
+<h3>
+<a name="generate-code-by-acme-template" class="anchor" href="#generate-code-by-acme-template"><span class="octicon octicon-link"></span></a>Generate code by Acme Template</h3>
+
+<p>Acme template is a default template in PHP Code Generator, generating code is very easy, please type:</p>
+
+<div class="highlight highlight-bash"><pre>php bin/generator gen acme <span class="nb">test</span>/MyApp
+</pre></div>
+
+<p>Now you will see message like below:</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>php bin/generator gen acme <span class="nb">test</span>/MyApp
+File created: /var/www/php-code-generator/test/MyApp/admin/article/edit.twig
+File created: /var/www/php-code-generator/test/MyApp/admin/article/index.twig
+File created: /var/www/php-code-generator/test/MyApp/admin/category/edit.twig
+File created: /var/www/php-code-generator/test/MyApp/admin/category/index.twig
+File created: /var/www/php-code-generator/test/MyApp/article.twig
+File created: /var/www/php-code-generator/test/MyApp/global/index.html
+File created: /var/www/php-code-generator/test/MyApp/index.html
+File created: /var/www/php-code-generator/test/MyApp/index.twig
+</pre></div>
+
+<h3>
+<a name="put-your-subtemplate-to-acme-template" class="anchor" href="#put-your-subtemplate-to-acme-template"><span class="octicon octicon-link"></span></a>Put your SubTemplate to Acme Template</h3>
+
+<p>Now you can put your code to <code>src/AcmeTemplate/Template/mytmpl</code>.</p>
+
+<p>And using this command to generate your sub template:</p>
+
+<div class="highlight highlight-bash"><pre>php bin/generator gen acme <span class="nb">test</span>/MyApp2 -t mytmpl
+</pre></div>
+
+<h2>
+<a name="create-your-project-template" class="anchor" href="#create-your-project-template"><span class="octicon octicon-link"></span></a>Create your project template</h2>
+
+<p>Now everything is very easy, but how can we create our own template? We have to write some code to configure paths and variables.</p>
+
+<h3>
+<a name="init-a-sample-template" class="anchor" href="#init-a-sample-template"><span class="octicon octicon-link"></span></a>Init a sample template</h3>
+
+<p>Using this command to init a new template.</p>
+
+<div class="highlight highlight-bash"><pre>php bin/generator tmpl-init flower
+</pre></div>
+
+<pre><code>File created: /var/www/php-code-generator/src/FlowerTemplate/Action/ConvertAction.php
+File created: /var/www/php-code-generator/src/FlowerTemplate/Action/CopyAllAction.php
+File created: /var/www/php-code-generator/src/FlowerTemplate/Task/Convert.php
+File created: /var/www/php-code-generator/src/FlowerTemplate/Task/Generate.php
+File created: /var/www/php-code-generator/src/FlowerTemplate/Template/default/DefaultClass.php
+File created: /var/www/php-code-generator/src/FlowerTemplate/FlowerTemplate.php
+</code></pre>
+
+<p>OK, we created a sample template named <code>flower</code>, this template will locate at <code>src/FlowerTemplate</code> with an entry class <code>FlowerTemplate</code>,
+actually you can create it manually, but this will be a little complex, so we are better using the sample first.</p>
+
+<h3>
+<a name="configure-variable-and-paths" class="anchor" href="#configure-variable-and-paths"><span class="octicon octicon-link"></span></a>Configure Variable and Paths</h3>
+
+<p>Open <code>FlowerTemplate</code>, you can set replaced string and copy path here:</p>
+
+<h4>
+<a name="register-replacing-variables" class="anchor" href="#register-replacing-variables"><span class="octicon octicon-link"></span></a>Register replacing variables</h4>
+
+<div class="highlight highlight-php"><pre><span class="k">protected</span> <span class="nv">$tagVariable</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'{@'</span><span class="p">,</span> <span class="s1">'@}'</span><span class="p">);</span>
+
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">registerReplaces</span><span class="p">(</span><span class="nv">$io</span><span class="p">,</span> <span class="nv">$replace</span> <span class="o">=</span> <span class="k">array</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="nv">$item</span> <span class="o">=</span> <span class="nv">$io</span><span class="o">-&gt;</span><span class="na">getOption</span><span class="p">(</span><span class="s1">'n'</span><span class="p">,</span> <span class="s1">'sakura'</span><span class="p">);</span>
+
+    <span class="cm">/*</span>
+<span class="cm">     * Replace with your code name.</span>
+<span class="cm">     */</span>
+
+    <span class="c1">// Set item name, default is sakura</span>
+    <span class="nv">$replace</span><span class="p">[</span><span class="s1">'item.lower'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">strtolower</span><span class="p">(</span><span class="nv">$item</span><span class="p">);</span>
+    <span class="nv">$replace</span><span class="p">[</span><span class="s1">'item.upper'</span><span class="p">]</span> <span class="o">=</span> <span class="nb">strtoupper</span><span class="p">(</span><span class="nv">$item</span><span class="p">);</span>
+    <span class="nv">$replace</span><span class="p">[</span><span class="s1">'item.cap'</span><span class="p">]</span>   <span class="o">=</span> <span class="nb">ucfirst</span><span class="p">(</span><span class="nv">$item</span><span class="p">);</span>
+
+    <span class="c1">// Set project name</span>
+    <span class="nv">$replace</span><span class="p">[</span><span class="s1">'project.class'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'CodeGenerator'</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nv">$replace</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>This example means we can type <code>-n {item}</code> to be a variable name. And in template code,
+the <code>{@item.lower@}</code> /<code>{@item.upper@}</code> /<code>{@item.cap@}</code> will be replace to the item name.</p>
+
+<p><code>sakura</code> is the default value if you don't give the <code>-n</code> param. This is an example that if <code>-n</code> not found,
+just exit and notice user type this param:</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$item</span> <span class="o">=</span> <span class="nv">$io</span><span class="o">-&gt;</span><span class="na">getOption</span><span class="p">(</span><span class="s1">'n'</span><span class="p">)</span> <span class="o">?</span> <span class="o">:</span> <span class="k">exit</span><span class="p">(</span><span class="s1">'Please give me item using "-n {item_name}"'</span><span class="p">);</span>
+</pre></div>
+
+<p>You can add many string to <code>$replace</code> array, remember you will need each lower, upper and capital cases, and don't forget to return it.</p>
+
+<h4>
+<a name="register-config--paths" class="anchor" href="#register-config--paths"><span class="octicon octicon-link"></span></a>Register Config &amp; Paths</h4>
+
+<div class="highlight highlight-php"><pre><span class="k">protected</span> <span class="k">function</span> <span class="nf">registerConfig</span><span class="p">(</span><span class="nv">$io</span><span class="p">,</span> <span class="nv">$config</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="cm">/*</span>
+<span class="cm">     * Replace with your project path.</span>
+<span class="cm">     */</span>
+
+    <span class="nv">$subTemplate</span> <span class="o">=</span> <span class="nv">$io</span><span class="o">-&gt;</span><span class="na">getOption</span><span class="p">(</span><span class="s1">'t'</span><span class="p">,</span> <span class="s1">'default'</span><span class="p">);</span>
+    <span class="nv">$dest</span>        <span class="o">=</span> <span class="nv">$io</span><span class="o">-&gt;</span><span class="na">getArgument</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="o">:</span> <span class="s1">'generated'</span><span class="p">;</span>
+
+    <span class="nv">$config</span><span class="p">[</span><span class="s1">'path.src'</span><span class="p">]</span>  <span class="o">=</span> <span class="nx">__DIR__</span> <span class="o">.</span> <span class="s1">'/Template/'</span> <span class="o">.</span> <span class="nv">$subTemplate</span><span class="p">;</span>
+    <span class="nv">$config</span><span class="p">[</span><span class="s1">'path.dest'</span><span class="p">]</span> <span class="o">=</span> <span class="nx">GENERATOR_PATH</span> <span class="o">.</span> <span class="s1">'/'</span> <span class="o">.</span> <span class="nv">$dest</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nv">$config</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>You can set some useful config in this method, the most important is <code>path.src</code> and <code>path.dest</code>. These two config tell PHP Code Generator
+  where code from and where code copied to.</p>
+
+<p><code>GENERATOR_PATH</code> is root path of PHP Code Generator, and the <code>$io-&gt;getArgument(1)</code> means get second argument of your command(First is 0).</p>
+
+<h3>
+<a name="task--action" class="anchor" href="#task--action"><span class="octicon octicon-link"></span></a>Task &amp; Action</h3>
+
+<p>We have two default task controller, <code>Generate</code> and <code>Convert</code>.</p>
+
+<p>Generate task does the code generate action, and Convert task can help us convert code back to a template.
+In task controller we can using <code>doAction()</code> to execute some different action to do something we want to do.</p>
+
+<p>The <code>Generate</code> controller class:</p>
+
+<div class="highlight highlight-php"><pre><span class="k">namespace</span> <span class="nx">FlowerTemplate\Task</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">FlowerTemplate\Action</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeGenerator\Controller\TaskController</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Generate</span> <span class="k">extends</span> <span class="nx">TaskController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">doAction</span><span class="p">(</span><span class="k">new</span> <span class="nx">Action\CopyAllAction</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The <code>CopyAllAction</code> class</p>
+
+<div class="highlight highlight-php"><pre><span class="k">namespace</span> <span class="nx">FlowerTemplate\Action</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeGenerator\Action\Action</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeGenerator\FileOperator\CopyOperator</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CopyAllAction</span> <span class="k">extends</span> <span class="nx">Action</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">doExecute</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$copyOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CopyOperator</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">io</span><span class="p">,</span> <span class="p">(</span><span class="k">array</span><span class="p">)</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">[</span><span class="s1">'tag.variable'</span><span class="p">]);</span>
+
+        <span class="nv">$copyOperator</span><span class="o">-&gt;</span><span class="na">copy</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">[</span><span class="s1">'path.src'</span><span class="p">],</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">[</span><span class="s1">'path.dest'</span><span class="p">],</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">config</span><span class="p">[</span><span class="s1">'replace'</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>These two class all very simple and follows single responsibility principle, we can organize our multiple actions in one controller like below:</p>
+
+<div class="highlight highlight-php"><pre><span class="k">class</span> <span class="nc">Generate</span> <span class="k">extends</span> <span class="nx">TaskController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">doAction</span><span class="p">(</span><span class="k">new</span> <span class="nx">Action\CopyAllAction</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">doAction</span><span class="p">(</span><span class="k">new</span> <span class="nx">Action\ImportSqlAction</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">doAction</span><span class="p">(</span><span class="k">new</span> <span class="nx">Action\Github\CloneSomeRepoAction</span><span class="p">);</span>
+
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">doAction</span><span class="p">(</span><span class="k">new</span> <span class="nx">Action\User\CreateNewUserAction</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The benefit of single action class is that we can re-use every classes in different task.</p>
+
+<h3>
+<a name="file-operation" class="anchor" href="#file-operation"><span class="octicon octicon-link"></span></a>File Operation</h3>
+
+<h4>
+<a name="operator-classes" class="anchor" href="#operator-classes"><span class="octicon octicon-link"></span></a>Operator classes</h4>
+
+<p>We provides two operators now, <code>copyOperator</code> help us copy codes and replace tag to variables,
+<code>convertOperator</code> help us copy code too, but replace variable by tags.</p>
+
+<p>Just new an instance and using copy method:</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$copyOperator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CopyOperator</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">io</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'{@'</span><span class="p">,</span> <span class="s1">'@}'</span><span class="p">));</span>
+
+<span class="nv">$copyOperator</span><span class="o">-&gt;</span><span class="na">copy</span><span class="p">(</span><span class="nv">$src</span><span class="p">,</span> <span class="nv">$dest</span><span class="p">,</span> <span class="nv">$replaceArray</span><span class="p">);</span>
+</pre></div>
+
+<p>There will be more operator(eg: <code>databaseOperator</code>, <code>gitOperator</code>) in the future.</p>
+
+<h4>
+<a name="filesystem" class="anchor" href="#filesystem"><span class="octicon octicon-link"></span></a>Filesystem</h4>
+
+<p>There are three filesystem classes: <code>Path</code>, <code>File</code> and <code>Folder</code>, which extends from Joomla Filesystem package,
+please see: <a href="https://github.com/joomla-framework/filesystem">https://github.com/joomla-framework/filesystem</a></p>
+
+<p>Simple usage:</p>
+
+<div class="highlight highlight-php"><pre><span class="k">namespace</span> <span class="nx">CodeGenerator\Filesystem</span><span class="p">;</span>
+
+<span class="nx">Filesystem\Folder</span><span class="o">::</span><span class="na">copy</span><span class="p">(</span><span class="nv">$src</span><span class="p">,</span> <span class="nv">$dest</span><span class="p">);</span>
+<span class="nx">Filesystem\Folder</span><span class="o">::</span><span class="na">move</span><span class="p">(</span><span class="nv">$src</span><span class="p">,</span> <span class="nv">$dest</span><span class="p">);</span>
+<span class="nx">Filesystem\Folder</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+<span class="nx">Filesystem\Folder</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+
+<span class="nx">Filesystem\File</span><span class="o">::</span><span class="na">copy</span><span class="p">(</span><span class="nv">$src</span><span class="p">,</span> <span class="nv">$dest</span><span class="p">);</span>
+<span class="nx">Filesystem\File</span><span class="o">::</span><span class="na">move</span><span class="p">(</span><span class="nv">$src</span><span class="p">,</span> <span class="nv">$dest</span><span class="p">);</span>
+<span class="nx">Filesystem\File</span><span class="o">::</span><span class="na">write</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$buffer</span><span class="p">);</span>
+<span class="nx">Filesystem\File</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+
+<span class="c1">// Replace / and \ to DIRECTORY_SEPARATOR</span>
+<span class="nv">$path</span> <span class="o">=</span> <span class="nx">Filesystem\Path</span><span class="o">::</span><span class="na">clean</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+</pre></div>
+
+<p>So you can using Filesystem classes in Action class to help you operate files and directories.</p>
+
+<h3>
+<a name="create-a-new-task" class="anchor" href="#create-a-new-task"><span class="octicon octicon-link"></span></a>Create a new Task</h3>
+
+<p>If you want a new task controller, this will need some steps to create a task. The process not very easy,
+we will make the process easier in the future.</p>
+
+<h4>
+<a name="1-create-a-new-command" class="anchor" href="#1-create-a-new-command"><span class="octicon octicon-link"></span></a>(1) Create a new Command</h4>
+
+<p>Create a command class in <code>src/CodeGenerator/Joomla/Command/MyTask/MyTask.php</code></p>
+
+<div class="highlight highlight-php"><pre><span class="k">namespace</span> <span class="nx">CodeGenerator\Joomla\Command\MyTask</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">CodeGenerator\Controller\GeneratorController</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeGenerator\Joomla\IO</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Joomla\Console\Command\Command</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyTask</span> <span class="k">extends</span> <span class="nx">Command</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$name</span> <span class="o">=</span> <span class="s1">'mytask'</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$description</span> <span class="o">=</span> <span class="s1">'Desc of my task.'</span><span class="p">;</span>
+
+    <span class="k">protected</span> <span class="nv">$usage</span> <span class="o">=</span> <span class="s1">'mytask &lt;cmd&gt;&lt;tmpl-name&gt;&lt;/cmd&gt; &lt;option&gt;[option]&lt;/option&gt;'</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">configure</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">configure</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">doExecute</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$controller</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GeneratorController</span><span class="p">(</span><span class="k">new</span> <span class="nx">IO</span><span class="p">(</span><span class="nv">$this</span><span class="p">));</span>
+
+        <span class="nv">$controller</span><span class="o">-&gt;</span><span class="na">setTask</span><span class="p">(</span><span class="s1">'mytask'</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>How to use Joomla Console and Command? See: <a href="https://github.com/asika32764/joomla-framework-console">https://github.com/asika32764/joomla-framework-console</a></p>
+
+<h4>
+<a name="2-register-your-command-to-application" class="anchor" href="#2-register-your-command-to-application"><span class="octicon octicon-link"></span></a>(2) Register your command to application</h4>
+
+<p>Register this command in <code>src/CodeGenerator/Joomla/Application::registerCommands()</code></p>
+
+<div class="highlight highlight-php"><pre><span class="k">protected</span> <span class="k">function</span> <span class="nf">registerCommands</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addCommand</span><span class="p">(</span><span class="k">new</span> <span class="nx">Command\Generate\Generate</span><span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addCommand</span><span class="p">(</span><span class="k">new</span> <span class="nx">Command\Init\Init</span><span class="p">);</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addCommand</span><span class="p">(</span><span class="k">new</span> <span class="nx">Command\Convert\Convert</span><span class="p">);</span>
+
+    <span class="c1">// Add here</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">addCommand</span><span class="p">(</span><span class="k">new</span> <span class="nx">Command\MyTask\Task</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>You will get new help like this:</p>
+
+<pre><code>Available commands:
+
+  help            List all arguments and show usage &amp; manual.
+
+  gen             Genarate operation.
+
+  tmpl-init       Init a new extension.
+
+  tmpl-convert    Convert a code folder back to a template.
+
+  mytask          Desc of my task.
+
+</code></pre>
+
+<h4>
+<a name="3-create-a-new-task-controller" class="anchor" href="#3-create-a-new-task-controller"><span class="octicon octicon-link"></span></a>(3) Create a new Task controller</h4>
+
+<p>Create a class in <code>src/FlowerTemplate/Task/MyTask.php</code></p>
+
+<div class="highlight highlight-php"><pre><span class="k">namespace</span> <span class="nx">FlowerTemplate\Task</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">FlowerTemplate\Action</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">CodeGenerator\Controller\TaskController</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyTask</span> <span class="k">extends</span> <span class="nx">TaskController</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">doAction</span><span class="p">(</span><span class="k">new</span> <span class="nx">Action\CopyAllAction</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Now you can do some actions here.</p>
+
+<h4>
+<a name="4-test-your-task" class="anchor" href="#4-test-your-task"><span class="octicon octicon-link"></span></a>(4) Test your task</h4>
+
+<p>Typing this command and you can go into your task controller:</p>
+
+<div class="highlight highlight-bash"><pre>php bin/generator mytask &lt;arguments&gt;
+</pre></div>
+
+<h2>
+<a name="integrate-to-your-project-or-framework" class="anchor" href="#integrate-to-your-project-or-framework"><span class="octicon octicon-link"></span></a>Integrate To Your Project or Framework</h2>
+
+<p>PHP Code Generator can integrate to any framework instead default Joomla Console Application. Just create an <code>IO</code> class
+to help PHP Code Generator input and output some information:</p>
+
+<div class="highlight highlight-php"><pre><span class="k">use</span> <span class="nx">CodeGenerator\IO\IOInterface</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyIOAdapter</span> <span class="k">implements</span> <span class="nx">IOInterface</span>
+<span class="p">{</span>
+    <span class="c1">// Implelemt this interface</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Then use <code>GeneratorController</code> in your project entry (For example: Symfony Console):</p>
+
+<div class="highlight highlight-php"><pre><span class="nv">$controller</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GeneratorController</span><span class="p">(</span><span class="k">new</span> <span class="nx">MyIOAdapter</span><span class="p">(</span><span class="nv">$input</span><span class="p">,</span> <span class="nv">$output</span><span class="p">));</span>
+
+<span class="nv">$controller</span><span class="o">-&gt;</span><span class="na">setTask</span><span class="p">(</span><span class="nv">$input</span><span class="o">-&gt;</span><span class="na">getArgument</span><span class="p">(</span><span class="s1">'task'</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</pre></div>
+
+<p>OK it's very easy, have a good time in your code recipe.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/asika32764">asika32764</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
