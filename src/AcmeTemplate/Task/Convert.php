@@ -41,7 +41,7 @@ class Convert extends AbstractTaskController
 		// Flip replace array
 		$this->replace = array_flip($this->replace);
 
-		$this->replace = array_map(array('Windwalker\Utilities\String', 'quote'), $this->replace);
+		$this->replace = array_map(array('Windwalker\String\String', 'quote'), $this->replace);
 
 		$this->doAction(new Action\ConvertAction);
 	}
