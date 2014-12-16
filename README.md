@@ -9,8 +9,8 @@ Add this dependency in your `composer.json`.
 ``` json
 {
     "require": {
-        "asika/php-code-generator": "0.2.*",
-        "asika/joomla-console":     "dev-master"
+        "asika/php-code-generator": "2.*",
+        "windwalker/console": "~2.0"
     }
 }
 ```
@@ -18,7 +18,7 @@ Add this dependency in your `composer.json`.
 Or just create a project:
 
 ``` shell
-php composer.phar create-project asika/php-code-generator php-code-generator 0.2.* -s dev
+php composer.phar create-project asika/php-code-generator php-code-generator 2.*
 ```
 
 ## Getting Started
@@ -32,47 +32,31 @@ php bin/generator
 You will get this help message:
 
 ```
-PHP Code Generator - version: 1.0
+PHP Code Generator - version: 2
 ------------------------------------------------------------
 
-[generator.php Help]
+[generator Help]
 
 The default application command
 
 Usage:
-  generator.php <command> [option]
+  generator <command> [option]
 
 
 Options:
 
-  -h / --help
-      Display this help message.
+  -h | --help       Display this help message.
+  -q | --quiet      Do not output any message.
+  -v | --verbose    Increase the verbosity of messages.
+  --ansi            Set 'off' to suppress ANSI colors on unsupported terminals.
+  -p | --path       Dest path.
+  -t | --tmpl       Sub template name.
 
-  -q / --quiet
-      Do not output any message.
-
-  -v / --verbose
-      Increase the verbosity of messages.
-
-  --no-ansi
-      Suppress ANSI colors on unsupported terminals.
-
-  -p / --path
-      Dest path.
-
-  -t
-      Sub template name.
-
-
-Available commands:
-
-  help            List all arguments and show usage & manual.
+Commands:
 
   gen             Genarate operation.
-
-  tmpl-init       Init a new extension.
-
-  tmpl-convert    Convert a code folder back to a template.
+  tmpl-init       Init a new template.
+  tmpl-convert    Convert a directory and files back to a template.
 ```
 
 ### Generate code by Acme Template
@@ -209,9 +193,9 @@ The `Generate` controller class:
 namespace FlowerTemplate\Task;
 
 use FlowerTemplate\Action;
-use CodeGenerator\Controller\TaskController;
+use CodeGenerator\Controller\AbstractTaskController;
 
-class Generate extends TaskController
+class Generate extends AbstractTaskController
 {
 	public function execute()
 	{
@@ -225,10 +209,10 @@ The `CopyAllAction` class
 ``` php
 namespace FlowerTemplate\Action;
 
-use CodeGenerator\Action\Action;
+use CodeGenerator\Action\AbstractAction;
 use CodeGenerator\FileOperator\CopyOperator;
 
-class CopyAllAction extends Action
+class CopyAllAction extends AbstractAction
 {
 	protected function doExecute()
 	{
@@ -242,7 +226,7 @@ class CopyAllAction extends Action
 These two class all very simple and follows single responsibility principle, we can organize our multiple actions in one controller like below:
 
 ``` php
-class Generate extends TaskController
+class Generate extends AbstractTaskController
 {
 	public function execute()
 	{
@@ -309,13 +293,13 @@ we will make the process easier in the future.
 
 #### (1) Create a new Command
 
-Create a command class in `src/CodeGenerator/Joomla/Command/MyTask/MyTask.php`
+Create a command class in `src/CodeGenerator/Windwalker/Command/MyTask/MyTask.php`
 
 ``` php
-namespace CodeGenerator\Joomla\Command\MyTask;
+namespace CodeGenerator\Windwalker\Command\MyTask;
 
 use CodeGenerator\Controller\GeneratorController;
-use CodeGenerator\Joomla\IO;
+use CodeGenerator\Windwalker\IO;
 use Joomla\Console\Command\Command;
 
 class MyTask extends Command
@@ -344,7 +328,7 @@ How to use Joomla Console and Command? See: https://github.com/asika32764/joomla
 
 #### (2) Register your command to application
 
-Register this command in `src/CodeGenerator/Joomla/Application::registerCommands()`
+Register this command in `src/CodeGenerator/Windwalker/Application::registerCommands()`
 
 ``` php
 protected function registerCommands()

@@ -37,7 +37,7 @@ class Application extends Console
 	 *
 	 * @var string
 	 */
-	protected $version = '1.0';
+	protected $version = '2';
 
 	/**
 	 * Console description.

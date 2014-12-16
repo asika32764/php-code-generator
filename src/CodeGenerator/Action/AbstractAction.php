@@ -1,6 +1,6 @@
 <?php
 /**
- * Part of generator project. 
+ * Part of php-code-generator project.
  *
  * @copyright  Copyright (C) 2014 {ORGANIZATION}. All rights reserved.
  * @license    GNU General Public License version 2 or later;
