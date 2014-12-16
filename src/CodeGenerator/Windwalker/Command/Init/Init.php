@@ -54,7 +54,7 @@ class Init extends Command
 	 */
 	protected function doExecute()
 	{
-		if (!$this->getArgument(0, new NotNullPrompter('Enter template name: ')))
+		if (!$this->getArgument(0))
 		{
 			throw new \InvalidArgumentException('Please give me template name.');
 		}

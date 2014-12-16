@@ -33,7 +33,7 @@ class ConvertAction extends AbstractAction
 		{
 			Folder::delete($this->config['path.dest']);
 		}
-// show($this->config);die;
+
 		// Do convert.
 		$convertOperator->copy($this->config['path.src'], $this->config['path.dest'], $this->replace);
 	}
