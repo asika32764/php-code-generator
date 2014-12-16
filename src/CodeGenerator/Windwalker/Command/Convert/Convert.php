@@ -6,11 +6,11 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace CodeGenerator\Joomla\Command\Convert;
+namespace CodeGenerator\Windwalker\Command\Convert;
 
 use CodeGenerator\Controller\GeneratorController;
-use CodeGenerator\Joomla\IO;
-use Joomla\Console\Command\Command;
+use CodeGenerator\Windwalker\IO;
+use Windwalker\Console\Command\Command;
 
 /**
  * Convert
@@ -36,7 +36,7 @@ class Convert extends Command
 	 *
 	 * @var  string
 	 */
-	protected $description = 'Convert a code folder back to a template.';
+	protected $description = 'Convert a directory and files back to a template.';
 
 	/**
 	 * The usage to tell user how to use this command.
@@ -44,18 +44,6 @@ class Convert extends Command
 	 * @var string
 	 */
 	protected $usage = 'tmpl-convert <cmd><tmpl-name></cmd> <cmd><dest-folder></cmd> <option>[option]</option>';
-
-	/**
-	 * Configure command information.
-	 *
-	 * @return void
-	 */
-	public function configure()
-	{
-		// $this->addArgument();
-
-		parent::configure();
-	}
 
 	/**
 	 * Execute this command.

@@ -9,14 +9,14 @@
 namespace TemplateTemplate\Task;
 
 use TemplateTemplate\Action;
-use CodeGenerator\Controller\TaskController;
+use CodeGenerator\Controller\AbstractTaskController;
 
 /**
  * Class AcmeController
  *
  * @since 1.0
  */
-class Generate extends TaskController
+class Generate extends AbstractTaskController
 {
 	/**
 	 * Execute the controller.

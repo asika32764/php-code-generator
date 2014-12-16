@@ -9,13 +9,13 @@
 namespace {{tmpl.cap}}Template;
 
 use {{project.class}}\IO\IOInterface;
-use {{project.class}}\Template\Template;
-use Joomla\Registry\Registry;
+use {{project.class}}\Template\AbstractTemplate;
+use Windwalker\Registry\Registry;
 
 /**
  * Template main entry.
  */
-class {{tmpl.cap}}Template extends Template
+class {{tmpl.cap}}Template extends AbstractTemplate
 {
 	/**
 	 * Using {@...@} to prevent twig conflict.

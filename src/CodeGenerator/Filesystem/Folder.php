@@ -9,9 +9,8 @@
 namespace CodeGenerator\Filesystem;
 
 /**
- * Proxy for Joomla Filesystem Folder
+ * Proxy for Windwalker Filesystem Folder
  */
-class Folder extends \Joomla\Filesystem\Folder
+class Folder extends \Windwalker\Filesystem\Folder
 {
 }
- 

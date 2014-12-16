@@ -29,4 +29,3 @@ interface ApplicationInterface
 	 */
 	public function setIO($io);
 }
- 

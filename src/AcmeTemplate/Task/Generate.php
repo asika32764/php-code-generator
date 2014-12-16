@@ -9,16 +9,14 @@
 namespace AcmeTemplate\Task;
 
 use AcmeTemplate\Action;
-use CodeGenerator\Controller\TaskController;
-use CodeGenerator\IO\IOInterface;
-use Joomla\Registry\Registry;
+use CodeGenerator\Controller\AbstractTaskController;
 
 /**
  * Class AcmeController
  *
  * @since 1.0
  */
-class Generate extends TaskController
+class Generate extends AbstractTaskController
 {
 	/**
 	 * Execute the controller.

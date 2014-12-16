@@ -8,16 +8,16 @@
 
 namespace TemplateTemplate\Task;
 
-use CodeGenerator\Utilities\StringHelper;
 use TemplateTemplate\Action;
-use CodeGenerator\Controller\TaskController;
+use CodeGenerator\Controller\AbstractTaskController;
+use Windwalker\String\String;
 
 /**
  * Class AcmeController
  *
  * @since 1.0
  */
-class Convert extends TaskController
+class Convert extends AbstractTaskController
 {
 	/**
 	 * Execute the controller.
@@ -47,7 +47,7 @@ class Convert extends TaskController
 		// Quote by tag variable
 		foreach ($this->replace as &$replace)
 		{
-			$replace = StringHelper::quote($replace, (array) $this->config['tag.variable']);
+			$replace = String::quote($replace, (array) $this->config['tag.variable']);
 		}
 
 		// Do it now.

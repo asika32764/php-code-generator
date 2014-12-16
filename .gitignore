@@ -10,3 +10,4 @@ phpunit.xml
 # Code Generator #
 template/*
 dest/*
+src/FlowerTemplate/*

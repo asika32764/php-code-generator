@@ -9,12 +9,12 @@
 namespace {{tmpl.cap}}Template\Task;
 
 use {{tmpl.cap}}Template\Action;
-use {{project.class}}\Controller\TaskController;
+use {{project.class}}\Controller\AbstractTaskController;
 
 /**
  * Generate Task Controller
  */
-class Generate extends TaskController
+class Generate extends AbstractTaskController
 {
 	/**
 	 * Execute the controller.

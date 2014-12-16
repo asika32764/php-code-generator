@@ -8,14 +8,14 @@
 
 namespace CodeGenerator\Controller;
 
-use CodeGenerator\Action\Action;
+use CodeGenerator\Action\AbstractAction;
 use CodeGenerator\IO\IOInterface;
-use Joomla\Registry\Registry;
+use Windwalker\Registry\Registry;
 
 /**
  * Base controller of task.
  */
-abstract class TaskController extends Controller
+abstract class AbstractTaskController extends AbstractController
 {
 	/**
 	 * Property config.
@@ -48,11 +48,11 @@ abstract class TaskController extends Controller
 	/**
 	 * Do an action by action class.
 	 *
-	 * @param Action $action Action class.
+	 * @param AbstractAction $action Action class.
 	 *
-	 * @return  TaskController  Return self to support chaining.
+	 * @return  AbstractTaskController  Return self to support chaining.
 	 */
-	public function doAction(Action $action)
+	public function doAction(AbstractAction $action)
 	{
 		$action->execute($this);
 
@@ -78,7 +78,7 @@ abstract class TaskController extends Controller
 	 * @param string $key   Config key.
 	 * @param string $value Value you want to set.
 	 *
-	 * @return  TaskController  Return self to support chaining.
+	 * @return  AbstractTaskController  Return self to support chaining.
 	 */
 	public function set($key, $value)
 	{
@@ -102,7 +102,7 @@ abstract class TaskController extends Controller
 	 *
 	 * @param   Registry $config Config object.
 	 *
-	 * @return  TaskController  Return self to support chaining.
+	 * @return  AbstractTaskController  Return self to support chaining.
 	 */
 	public function setConfig($config)
 	{

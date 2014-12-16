@@ -9,9 +9,6 @@
 
 include dirname(__DIR__) . '/vendor/autoload.php';
 
-use CodeGenerator\Joomla\Application;
-use Joomla\Console\Output\Stdout;
-
-$app = new Application(null, null, new Stdout);
+$app = new \CodeGenerator\Windwalker\Application;
 
 $app->execute();

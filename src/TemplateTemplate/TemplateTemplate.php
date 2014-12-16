@@ -9,13 +9,13 @@
 namespace TemplateTemplate;
 
 use CodeGenerator\IO\IOInterface;
-use CodeGenerator\Template\Template;
-use Joomla\Registry\Registry;
+use CodeGenerator\Template\AbstractTemplate;
+use Windwalker\Registry\Registry;
 
 /**
  * Template main entry.
  */
-class TemplateTemplate extends Template
+class TemplateTemplate extends AbstractTemplate
 {
 	/**
 	 * Tag variable.
@@ -42,7 +42,6 @@ class TemplateTemplate extends Template
 		$replace['item.lower'] = strtolower($item);
 		$replace['item.upper'] = strtoupper($item);
 		$replace['item.cap']   = ucfirst($item);
-
 
 		// Set project name
 		$replace['project.class'] = 'CodeGenerator';

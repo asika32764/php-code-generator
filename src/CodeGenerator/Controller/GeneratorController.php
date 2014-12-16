@@ -11,7 +11,7 @@ namespace CodeGenerator\Controller;
 /**
  * Main entry of Code Generator.
  */
-class GeneratorController extends Controller
+class GeneratorController extends AbstractController
 {
 	/**
 	 * Task name.
@@ -53,7 +53,7 @@ class GeneratorController extends Controller
 			throw new \LogicException(sprintf('Template "%s" not found.', $template));
 		}
 
-		/** @var $template \CodeGenerator\Template\Template */
+		/** @var $template \CodeGenerator\Template\AbstractTemplate */
 		$template = new $class($this->io, $this->config);
 
 		if ($template->setTask($this->getTask())->execute())
@@ -62,10 +62,8 @@ class GeneratorController extends Controller
 
 			return true;
 		}
-		else
-		{
-			return false;
-		}
+
+		return false;
 	}
 
 	/**

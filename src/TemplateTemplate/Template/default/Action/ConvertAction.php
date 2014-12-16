@@ -8,13 +8,13 @@
 
 namespace {{tmpl.cap}}Template\Action;
 
-use {{project.class}}\Action\Action;
+use {{project.class}}\Action\AbstractAction;
 use {{project.class}}\FileOperator\ConvertOperator;
 
 /**
  * ConvertAction
  */
-class ConvertAction extends Action
+class ConvertAction extends AbstractAction
 {
 	/**
 	 * Execute this action.

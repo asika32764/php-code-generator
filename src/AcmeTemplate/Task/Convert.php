@@ -9,14 +9,14 @@
 namespace AcmeTemplate\Task;
 
 use AcmeTemplate\Action;
-use CodeGenerator\Controller\TaskController;
+use CodeGenerator\Controller\AbstractTaskController;
 
 /**
  * Class AcmeController
  *
  * @since 1.0
  */
-class Convert extends TaskController
+class Convert extends AbstractTaskController
 {
 	/**
 	 * Execute the controller.
@@ -41,7 +41,7 @@ class Convert extends TaskController
 		// Flip replace array
 		$this->replace = array_flip($this->replace);
 
-		$this->replace = array_map(array('CodeGenerator\\Utilities\\StringHelper', 'quote'), $this->replace);
+		$this->replace = array_map(array('Windwalker\Utilities\String', 'quote'), $this->replace);
 
 		$this->doAction(new Action\ConvertAction);
 	}

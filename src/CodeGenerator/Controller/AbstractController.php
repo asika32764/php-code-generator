@@ -9,13 +9,12 @@
 namespace CodeGenerator\Controller;
 
 use CodeGenerator\IO\IOInterface;
-use Joomla\Input;
-use Joomla\Registry\Registry;
+use Windwalker\Registry\Registry;
 
 /**
  * Base controller class.
  */
-abstract class Controller implements ControllerInterface
+abstract class AbstractController implements ControllerInterface
 {
 	/**
 	 * IO adapter.
@@ -41,7 +40,7 @@ abstract class Controller implements ControllerInterface
 	 *
 	 * @param   string   $text  The text to display.
 	 *
-	 * @return  Controller  Instance of $this to allow chaining.
+	 * @return  AbstractController  Instance of $this to allow chaining.
 	 */
 	public function out($text = '')
 	{
@@ -55,7 +54,7 @@ abstract class Controller implements ControllerInterface
 	 *
 	 * @param   string   $text  The text to display.
 	 *
-	 * @return  Controller  Instance of $this to allow chaining.
+	 * @return  AbstractController  Instance of $this to allow chaining.
 	 */
 	public function err($text = '')
 	{

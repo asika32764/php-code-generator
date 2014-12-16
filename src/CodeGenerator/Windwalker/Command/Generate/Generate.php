@@ -6,11 +6,11 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace CodeGenerator\Joomla\Command\Generate;
+namespace CodeGenerator\Windwalker\Command\Generate;
 
 use CodeGenerator\Controller\GeneratorController;
-use CodeGenerator\Joomla\IO;
-use Joomla\Console\Command\Command;
+use CodeGenerator\Windwalker\IO;
+use Windwalker\Console\Command\Command;
 
 /**
  * Generate
@@ -43,7 +43,7 @@ class Generate extends Command
 	 * @since  1.0
 	 */
 	protected $help = <<<HELP
-Genarate operation.
+Generate operation.
 HELP;
 
 	/**
@@ -53,17 +53,7 @@ HELP;
 	 *
 	 * @since  1.0
 	 */
-	protected $usage = '%s <cmd><command></cmd> <option>[option]</option>';
-
-	/**
-	 * configure
-	 *
-	 * @return  void
-	 */
-	protected function configure()
-	{
-		// $this->
-	}
+	protected $usage = 'gen <cmd><source></cmd> <cmd><dest></cmd> [options]';
 
 	/**
 	 * doExecute

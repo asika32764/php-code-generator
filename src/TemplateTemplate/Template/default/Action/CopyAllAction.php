@@ -8,13 +8,13 @@
 
 namespace {{tmpl.cap}}Template\Action;
 
-use {{project.class}}\Action\Action;
+use {{project.class}}\Action\AbstractAction;
 use {{project.class}}\FileOperator\CopyOperator;
 
 /**
  * CopyAllAction
  */
-class CopyAllAction extends Action
+class CopyAllAction extends AbstractAction
 {
 	/**
 	 * Execute this action.

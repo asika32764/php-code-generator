@@ -8,7 +8,7 @@
 
 namespace TemplateTemplate\Action;
 
-use CodeGenerator\Action\Action;
+use CodeGenerator\Action\AbstractAction;
 use CodeGenerator\FileOperator\ConvertOperator;
 use CodeGenerator\Filesystem\Folder;
 
@@ -17,7 +17,7 @@ use CodeGenerator\Filesystem\Folder;
  *
  * @since 1.0
  */
-class ConvertAction extends Action
+class ConvertAction extends AbstractAction
 {
 	/**
 	 * doExecute
@@ -29,8 +29,11 @@ class ConvertAction extends Action
 		$convertOperator = new ConvertOperator($this->io);
 
 		// Delete old folder first.
-		Folder::delete($this->config['path.dest']);
-
+		if (file_exists($this->config['path.dest']))
+		{
+			Folder::delete($this->config['path.dest']);
+		}
+// show($this->config);die;
 		// Do convert.
 		$convertOperator->copy($this->config['path.src'], $this->config['path.dest'], $this->replace);
 	}

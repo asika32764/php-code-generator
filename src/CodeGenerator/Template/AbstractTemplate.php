@@ -9,14 +9,14 @@
 namespace CodeGenerator\Template;
 
 use CodeGenerator\IO\IOInterface;
-use Joomla\Registry\Registry;
+use Windwalker\Registry\Registry;
 
 /**
  * Class Template
  *
  * @since 1.0
  */
-abstract class Template
+abstract class AbstractTemplate
 {
 	/**
 	 * Property io.
@@ -99,7 +99,7 @@ abstract class Template
 			throw new \RuntimeException(sprintf('Task "%s" not support.', $this->getTask()));
 		}
 
-		/** @var \CodeGenerator\Controller\TaskController $controller */
+		/** @var \CodeGenerator\Controller\AbstractTaskController $controller */
 		$controller = new $class($this->io, $this->config, $this->replace);
 
 		return $controller->execute();
@@ -140,7 +140,7 @@ abstract class Template
 	 *
 	 * @param   string $task
 	 *
-	 * @return  Template  Return self to support chaining.
+	 * @return  AbstractTemplate  Return self to support chaining.
 	 */
 	public function setTask($task)
 	{

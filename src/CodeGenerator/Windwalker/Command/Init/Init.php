@@ -6,11 +6,12 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace CodeGenerator\Joomla\Command\Init;
+namespace CodeGenerator\Windwalker\Command\Init;
 
 use CodeGenerator\Controller\GeneratorController;
-use CodeGenerator\Joomla\IO;
-use Joomla\Console\Command\Command;
+use CodeGenerator\Windwalker\IO;
+use Windwalker\Console\Command\Command;
+use Windwalker\Console\Prompter\NotNullPrompter;
 
 /**
  * Class Init
@@ -36,7 +37,7 @@ class Init extends Command
 	 *
 	 * @var  string
 	 */
-	protected $description = 'Init a new extension.';
+	protected $description = 'Init a new template.';
 
 	/**
 	 * The usage to tell user how to use this command.
@@ -46,18 +47,6 @@ class Init extends Command
 	protected $usage = 'tmpl-init <cmd><tmpl-name></cmd> <option>[option]</option>';
 
 	/**
-	 * Configure command information.
-	 *
-	 * @return void
-	 */
-	public function configure()
-	{
-		// $this->addArgument();
-
-		parent::configure();
-	}
-
-	/**
 	 * doExecute
 	 *
 	 * @throws \InvalidArgumentException
@@ -65,14 +54,14 @@ class Init extends Command
 	 */
 	protected function doExecute()
 	{
-		if (empty($this->input->args[0]))
+		if (!$this->getArgument(0, new NotNullPrompter('Enter template name: ')))
 		{
 			throw new \InvalidArgumentException('Please give me template name.');
 		}
 
-		$this->input->args[1] = $this->input->args[0];
+		$this->io->setArgument(1, $this->getArgument(0));
 
-		$this->input->args[0] = 'template';
+		$this->io->setArgument(0, 'template');
 
 		$io = new IO($this);
 

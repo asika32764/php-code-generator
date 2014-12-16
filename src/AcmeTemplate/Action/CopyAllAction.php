@@ -10,7 +10,6 @@ namespace AcmeTemplate\Action;
 
 use CodeGenerator\Action\Action;
 use CodeGenerator\FileOperator\CopyOperator;
-use CodeGenerator\Utilities\StringHelper;
 
 /**
  * Class CopyAllAction

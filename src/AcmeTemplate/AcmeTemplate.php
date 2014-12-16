@@ -9,15 +9,15 @@
 namespace AcmeTemplate;
 
 use CodeGenerator\IO\IOInterface;
-use CodeGenerator\Template\Template;
-use Joomla\Registry\Registry;
+use CodeGenerator\Template\AbstractTemplate;
+use Windwalker\Registry\Registry;
 
 /**
  * Class AcmeController
  *
  * @since 1.0
  */
-class AcmeTemplate extends Template
+class AcmeTemplate extends AbstractTemplate
 {
 	/**
 	 * Using {@...@} to prevent twig conflict.

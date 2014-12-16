@@ -44,4 +44,3 @@ class DefaultClass
 		return $this;
 	}
 }
- 
