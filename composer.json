@@ -11,15 +11,15 @@
             "email": "asika32764@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "require": {
-        "windwalker/filesystem": "~2.0",
-        "windwalker/registry": "~2.0",
-        "windwalker/utilities": "~2.0"
+        "windwalker/filesystem": "~2.0@stable",
+        "windwalker/registry": "~2.0@stable",
+        "windwalker/utilities": "~2.0@stable"
     },
     "require-dev": {
-        "windwalker/database": "~2.0",
-        "windwalker/console": "~2.0"
+        "windwalker/database": "~2.0@stable",
+        "windwalker/console": "~2.0@stable"
     },
     "autoload": {
         "psr-0": {
