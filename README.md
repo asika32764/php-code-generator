@@ -264,8 +264,8 @@ There will be more operator(eg: `databaseOperator`, `gitOperator`) in the future
 
 #### Filesystem
 
-There are three filesystem classes: `Path`, `File` and `Folder`, which extends from Joomla Filesystem package,
-please see: https://github.com/joomla-framework/filesystem
+There are three filesystem classes: `Path`, `File` and `Folder`, which extends from Windwalker Filesystem package,
+please see: https://github.com/ventoviro/windwalker-filesystem
 
 Simple usage:
 
@@ -326,7 +326,7 @@ class MyTask extends Command
 }
 ```
 
-How to use Joomla Console and Command? See: https://github.com/ventoviro/windwalker-console
+How to use Windwalker Console and Command? See: https://github.com/ventoviro/windwalker-console
 
 #### (2) Register your command to application
 
@@ -387,7 +387,7 @@ php bin/generator mytask <arguments>
 
 ## Integrate To Your Project or Framework
 
-PHP Code Generator can integrate to any framework instead default Joomla Console Application. Just create an `IO` class
+PHP Code Generator can integrate to any framework instead default Windwalker Console Application. Just create an `IO` class
 to help PHP Code Generator input and output some information:
 
 ``` php
