@@ -302,7 +302,7 @@ namespace CodeGenerator\Windwalker\Command\MyTask;
 
 use CodeGenerator\Controller\GeneratorController;
 use CodeGenerator\Windwalker\IO;
-use Joomla\Console\Command\Command;
+use Windwalker\Console\Command\Command;
 
 class MyTask extends Command
 {
@@ -326,7 +326,7 @@ class MyTask extends Command
 }
 ```
 
-How to use Joomla Console and Command? See: https://github.com/asika32764/joomla-framework-console
+How to use Joomla Console and Command? See: https://github.com/ventoviro/windwalker-console
 
 #### (2) Register your command to application
 
@@ -349,14 +349,9 @@ You will get new help like this:
 ```
 Available commands:
 
-  help            List all arguments and show usage & manual.
-
   gen             Genarate operation.
-
   tmpl-init       Init a new extension.
-
   tmpl-convert    Convert a code folder back to a template.
-
   mytask          Desc of my task.
 
 ```
